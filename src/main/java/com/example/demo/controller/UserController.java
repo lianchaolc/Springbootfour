@@ -29,7 +29,7 @@ public class UserController {
      */
 //    public  boolean   addUserbyid(int userid){
 //  boolean result=userService.adduserbyid(userid);
-//        return result;
+////        return result;
 //    }
     /***
      * 查询所有
