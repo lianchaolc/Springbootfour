@@ -16,3 +16,5 @@ public class DemoApplication {
 	}
 
 }
+
+//1总结：返回结果集合返回是一列 对象返回的是全体数据员

@@ -18,11 +18,7 @@
     <input type="text" id="usertest" type="hidden"/>人员类型</input>
     <input type="text" id="usertype" type="hidden"/>人员权限</input>
 </div>
-<button id="" style="height: 50px ;width: 100px ; margin-top: 40px" onclick="sureadduser()">提交</button>
-
-</button>
-
-
+<button id="" style="height: 50px ;width: 100px ; margin-top: 40px" onclick="sureadduser()" type="button";>提交</button>
 <button id="userlogin" style="height: 50px ;width: 100px ;" onclick="useraction()" ;>跳转到主页面</button>
 <button id="selectall" style="height: 50px ;width: 100px ;" onclick="selectall()" ;>查找所有</button>
 
@@ -45,22 +41,25 @@
 　　</thead>
 
 </table>
+
+
 </body>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script>
     //数据提交代码
     function sureadduser() {
-        console.log("执行完成" + document.getElementById("username").toString().value);
-        console.log("执行完成！！！！！" + document.getElementById("username").toString().value);
-        console.log("执行完成！！！！！" + document.getElementById("usertel").toString().value);
-        console.log("执行完成！！！！！" + document.getElementById("usertest").toString().value);
-        console.log("执行完成！！！！！" + document.getElementById("usertype").toString().value);
+        console.log("执行完成！！！！！" + document.getElementById("username").innerHTML);
+        console.log("执行完成！！！！！" + document.getElementById("usertel").innerHTML);
+        console.log("执行完成！！！！！" + document.getElementById("usertest").innerHTML);
+        console.log("执行完成！！！！！" + document.getElementById("usertype").innerHTML);
 
-        if (document.getElementById("username").value == null) {
-            console.info("是null  不能提交")
+        if (document.getElementById("username").innerHTML==null) {
+            console.info("是null  不能提交");
+            alert('网络不行，请检查数据是否填写完成')
             return;
-        }
+        }else{
+
         $.ajax({
             url: "/addUser",
             type: "POST",
@@ -73,16 +72,13 @@
             },
             dataType: "json",
             success: function (res) {
-                console.log("！！！！！" + document.getElementById("username").toString());
-                console.log("！！！！！" + document.getElementById("usertel").toString());
-                console.log("！！！！！" + document.getElementById("usertest").toString());
-
+                console.info("提交后结果！！！"+res.toString());
             }
-
         }).done().fail(function(){
             alert('网络不行，请求错误')
-        });
 
+        });
+        }
     }
      /// 点击页面没报错查看下F12后看代码
     //     跳转主页面
@@ -105,12 +101,12 @@
                     var str = "";//定义用于拼接的字符串
                     for (var i = 0; i < res.length; i++) {
                         var x = document.getElementById('tb').insertRow();
-                        for (var j = 0; j < res[i].length; j++) {
+                        // for (var j = 0; j < res[i].length; j++) {
                             var cell = x.insertCell();
-                            cell.innerHTML = res[i][j];
+                            cell.innerHTML = res[i];
                         }
                     }
-                }
+                // }
         }).done().fail(function(){
             alert('网络不行，请求错误')
         });

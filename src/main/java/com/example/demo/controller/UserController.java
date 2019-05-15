@@ -16,9 +16,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/addUser")
-    public boolean addUser(User user){
-        boolean  result=userService.saveUser(user);
-        return  result;
+    public boolean addUser(User user) {
+        boolean result = userService.saveUser(user);
+        return result;
     }
 
 
@@ -31,12 +31,13 @@ public class UserController {
 //  boolean result=userService.adduserbyid(userid);
 ////        return result;
 //    }
+
     /***
      * 查询所有
      */
     @PostMapping("/selectall")
-    public List<String>  selectAll(){
-       List<String> list=userService.selectAll();
+    public List<User> selectAll() {
+        List<User> list = userService.selectAll();
         return list;
     }
 }

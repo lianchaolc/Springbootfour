@@ -9,5 +9,5 @@ public interface UserService {
 
     boolean saveUser(User user);
     boolean adduserbyid(int userid);
-    List<String> selectAll();
+    List<User> selectAll();
 }
