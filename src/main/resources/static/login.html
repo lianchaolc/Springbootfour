@@ -12,33 +12,47 @@
 <div style=""></div>
 <h1 style="">输入用户信息页面</h1>
 <header style="width: 150px ;height: auto ; background-color: #00F7DE">用户信息录入页面</header>
-<div style="text-align: center ;width: 250px ;height: auto ;  margin-top: 20px;background-color: #00F7DE" >
+<div style="text-align: center ;width: 250px ;height: auto ;  margin-top: 20px;background-color: #00F7DE">
     <input type="text" id="username" type="hidden"/>人员姓名</input>
     <input type="text" id="usertel" type="hidden"/>人员电话</input>
     <input type="text" id="usertest" type="hidden"/>人员类型</input>
     <input type="text" id="usertype" type="hidden"/>人员权限</input>
 </div>
-<button id="" style="height: 50px ;width: 100px ; margin-top: 40px" onclick="sureadduser()" type="button";>提交</button>
+<button id="" style="height: 50px ;width: 100px ; margin-top: 40px" onclick="sureadduser()" type="button" ;>提交</button>
 <button id="userlogin" style="height: 50px ;width: 100px ;" onclick="useraction()" ;>跳转到主页面</button>
 <button id="selectall" style="height: 50px ;width: 100px ;" onclick="selectall()" ;>查找所有</button>
 
 <table border="1" id="tb">
-    　　 <thead>
-　　　　<caption>人员信息显示公布</caption>
-　　　　<tr>
-    　　　　　　<th rowspan="2">知识点</th>
-    　　　　　　<th rowspan="2">全校得分率</th>
-    　　　　　　<th rowspan="2">上次考试教师授课班级得分率</th>
-    　　　　　　<th rowspan="2">本次考试教师授课本机得分率</th>
-    　　　　　　<th colspan="3">本次分班级</th>
-    　　　　　　<th rowspan="2">神经网络预测得分率</th>
-</tr>
-<tr>
-    　　　　　　<th>1班</th>
-    　　　　　　<th>2班</th>
-    　　　　　　<th>3班</th>
-    　　　　</tr>
-　　</thead>
+    　　
+    <thead>
+    　　　　
+    <caption>人员信息显示公布</caption>
+    　　　　
+    <tr>
+        　　　　　　
+        <th rowspan="2">知识点</th>
+        　　　　　　
+        <th rowspan="2">全校得分率</th>
+        　　　　　　
+        <th rowspan="2">上次考试教师授课班级得分率</th>
+        　　　　　　
+        <th rowspan="2">本次考试教师授课本机得分率</th>
+        　　　　　　
+        <th colspan="3">本次分班级</th>
+        　　　　　　
+        <th rowspan="2">神经网络预测得分率</th>
+    </tr>
+    <tr>
+        　　　　　　
+        <th>1班</th>
+        　　　　　　
+        <th>2班</th>
+        　　　　　　
+        <th>3班</th>
+        　　　　
+    </tr>
+    　　
+    </thead>
 
 </table>
 <input type="text" id="delusername" type="hidden"/>请输入要删除的人员姓名</input>
@@ -55,87 +69,88 @@
         console.log("usertest" + document.getElementById("usertest").innerHTML);
         console.log("usertype" + document.getElementById("usertype").innerHTML);
 
-        if (document.getElementById("username").innerHTML==null) {
+        if (document.getElementById("username").innerHTML == null) {
             console.info("是null  不能提交");
             alert('网络不行，请检查数据是否填写完成')
             return;
-        }else{
+        } else {
 
-        $.ajax({
-            url: "/addUser",
-            type: "POST",
-            dataType: "json",
-            data: {
-                "username": document.getElementById("username").value.toString(),
-                "usertel":  document.getElementById("usertel").value.toString(),
-                "usertest": document.getElementById("usertest").value.toString(),
-                "usertype": document.getElementById("usertype").value.toString(),
-            },
-            dataType: "json",
-            success: function (res) {
-                console.info("提交后结果！！！"+res.toString());
-            }
-        }).done().fail(function(){
-            alert('网络不行，请求错误')
+            $.ajax({
+                url: "/addUser",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "username": document.getElementById("username").value.toString(),
+                    "usertel": document.getElementById("usertel").value.toString(),
+                    "usertest": document.getElementById("usertest").value.toString(),
+                    "usertype": document.getElementById("usertype").value.toString(),
+                },
+                dataType: "json",
+                success: function (res) {
+                    console.info("提交后结果！！！" + res.toString());
+                }
+            }).done().fail(function () {
+                alert('网络不行，请求错误')
 
-        });
+            });
         }
     }
-     /// 点击页面没报错查看下F12后看代码
+
+    /// 点击页面没报错查看下F12后看代码
     //     跳转主页面
     function selectall() {
         console.log("跳转新页面");
         window.location.href = '/hello.html';
     }
 
-    function  selectall() {
+    function selectall() {
         console.log("查询所有");
         $.ajax({
             url: "/selectall",
             type: "POST",
             dataType: "json",
-            data: {
-            },
+            data: {},
             dataType: "json",
-                success: function (res) {
-                    console.log("！！！！！查询所有" + res.toString());
+            success: function (res) {
+                console.log("！！！！！查询所有" + res.toString());
 
-                    // var    gson=new Gson();
-                    // var  user=new User();
-               // var   list=         gson.from(res,user);
+                // var    gson=new Gson();
+                // var  user=new User();
+                // var   list=         gson.from(res,user);
 
-                    for (var i = 0; i < res.length; i++) {
-                        console.log("！！！！！查询所有" +  res[i].username+  res[i].usertel);
-                        res[i].username
-                        res[i].usertel
-                    }
-                    var str = "";//定义用于拼接的字符串
-                        for (var i = 0; i < res.length; i++) {
-                            var x = document.getElementById('tb').insertRow();
-                            // for (var j = 0; j < res[i].length; j++) {
-                            var cell = x.insertCell();
-                            cell.innerHTML = res[i];
-                        }
+                for (var i = 0; i < res.length; i++) {
+                    console.log("！！！！！查询所有" + res[i].username + res[i].usertel);
+                    res[i].username
+                    res[i].usertel
                 }
-                // }
-        }).done().fail(function(){
+                var str = "";//定义用于拼接的字符串
+                for (var i = 0; i < res.length; i++) {
+                    var x = document.getElementById('tb').insertRow();
+                    // for (var j = 0; j < res[i].length; j++) {
+                    var cell = x.insertCell();
+                    cell.innerHTML = res[i];
+                }
+            }
+            // }
+        }).done().fail(function () {
             alert('网络不行，请求错误')
         });
 
     }
+
     // 显示表格数据
     //展示数据
 
     //  输入删除id内容
-    function  deletebyid() {
+    function deletebyid() {
 
-        console.log("查询所有deleteusername!!!"+ document.getElementById("delusername").value );
+        console.log("查询所有deleteusername!!!" + document.getElementById("delusername").value);
         $.ajax({
             url: "/deletebyid",
             type: "POST",
             dataType: "json",
             data: {
-                "username":document.getElementById("delusername").value,
+                "username": document.getElementById("delusername").value,
             },
             dataType: "json",
             success: function (res) {
@@ -144,7 +159,7 @@
 
             }
             // }
-        }).done().fail(function(){
+        }).done().fail(function () {
             alert('网络不行，请求错误')
         });
 
@@ -153,13 +168,13 @@
          * 更新一条数据
          */
 
-        function     unpdatarember () {
-            console.log()
+        function unpdatarember() {
+            console.log();
 
         }
 
 
-    } 
+    }
 
 
 </script>
