@@ -41,7 +41,8 @@
 　　</thead>
 
 </table>
-
+<input type="text" id="delusername" type="hidden"/>请输入要删除的人员姓名</input>
+<button id="btn_delete" onclick="deletebyid()" type="text">删除id</button>
 
 </body>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
@@ -49,10 +50,10 @@
 <script>
     //数据提交代码
     function sureadduser() {
-        console.log("执行完成！！！！！" + document.getElementById("username").innerHTML);
-        console.log("执行完成！！！！！" + document.getElementById("usertel").innerHTML);
-        console.log("执行完成！！！！！" + document.getElementById("usertest").innerHTML);
-        console.log("执行完成！！！！！" + document.getElementById("usertype").innerHTML);
+        console.log("username" + document.getElementById("username").value);
+        console.log("usertel" + document.getElementById("usertel").value);
+        console.log("usertest" + document.getElementById("usertest").innerHTML);
+        console.log("usertype" + document.getElementById("usertype").innerHTML);
 
         if (document.getElementById("username").innerHTML==null) {
             console.info("是null  不能提交");
@@ -97,15 +98,25 @@
             },
             dataType: "json",
                 success: function (res) {
-                    console.log("！！！！！" + res.toString());
-                    var str = "";//定义用于拼接的字符串
+                    console.log("！！！！！查询所有" + res.toString());
+
+                    // var    gson=new Gson();
+                    // var  user=new User();
+               // var   list=         gson.from(res,user);
+
                     for (var i = 0; i < res.length; i++) {
-                        var x = document.getElementById('tb').insertRow();
-                        // for (var j = 0; j < res[i].length; j++) {
+                        console.log("！！！！！查询所有" +  res[i].username+  res[i].usertel);
+                        res[i].username
+                        res[i].usertel
+                    }
+                    var str = "";//定义用于拼接的字符串
+                        for (var i = 0; i < res.length; i++) {
+                            var x = document.getElementById('tb').insertRow();
+                            // for (var j = 0; j < res[i].length; j++) {
                             var cell = x.insertCell();
                             cell.innerHTML = res[i];
                         }
-                    }
+                }
                 // }
         }).done().fail(function(){
             alert('网络不行，请求错误')
@@ -115,6 +126,40 @@
     // 显示表格数据
     //展示数据
 
+    //  输入删除id内容
+    function  deletebyid() {
+
+        console.log("查询所有deleteusername!!!"+ document.getElementById("delusername").value );
+        $.ajax({
+            url: "/deletebyid",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "username":document.getElementById("delusername").value,
+            },
+            dataType: "json",
+            success: function (res) {
+                console.log("删除单条记录：" + res.toString());
+
+
+            }
+            // }
+        }).done().fail(function(){
+            alert('网络不行，请求错误')
+        });
+
+        /***
+         *
+         * 更新一条数据
+         */
+
+        function     unpdatarember () {
+            console.log()
+
+        }
+
+
+    } 
 
 
 </script>

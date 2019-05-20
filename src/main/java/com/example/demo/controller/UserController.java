@@ -36,8 +36,25 @@ public class UserController {
      * 查询所有
      */
     @PostMapping("/selectall")
-    public List<User> selectAll() {
-        List<User> list = userService.selectAll();
+    public List<String> selectAll() {
+        List<String> list = userService.selectAll();
         return list;
     }
+
+    /***
+     * 输入单条姓名进行删除单挑数据
+     */
+
+    @PostMapping("/deletebyid")
+    public   Boolean deletebyusername(String  username){
+
+        System.out.println("usernaeme==="+username);
+       boolean
+               result = userService.deleteuserbyname(username);
+        return result;
+    }
+
+
+
+
 }

@@ -13,4 +13,7 @@ public interface UserMapper {
     int save(@Param("user") User user);// 新增用户
 
     List<User> selectall();
+
+
+    int  deleteuserbyname(@Param("username") String username);// 用户名称
 }

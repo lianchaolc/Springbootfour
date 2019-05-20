@@ -9,5 +9,8 @@ public interface UserService {
 
     boolean saveUser(User user);
     boolean adduserbyid(int userid);
-    List<User> selectAll();
+    List<String> selectAll();
+
+    //删除单条数据记录
+    boolean  deleteuserbyname(String username);
 }
