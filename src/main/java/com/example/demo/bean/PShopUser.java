@@ -17,11 +17,11 @@ public class PShopUser implements Serializable {
                 '}';
     }
 
-    private String  username;
-    private  String   userpassword;
+    private String username;
+    private String userpassword;
     private String userpw; //密码
     private String userphone;
-    private  String  userstate;
+    private String userstate;
 
     public String getUsername() {
         return username;
