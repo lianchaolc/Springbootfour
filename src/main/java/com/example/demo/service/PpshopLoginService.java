@@ -11,5 +11,19 @@ import com.example.demo.bean.PShopUser;
  */
 public interface PpshopLoginService {
 
-    PShopUser login(PShopUser pShopUser);  //  查询用户是否存在于账户表中的记录
+    /***
+     * 用户登陆的放回信息
+     * @param pShopUser
+     * @return
+     *  //  查询用户是否存在于账户表中的记录
+     */
+    PShopUser login(PShopUser pShopUser);
+
+
+    /***
+     * 用户用于注册 的接口
+     */
+    boolean ReginActivon(PShopUser pShopUser);
+
+
 }

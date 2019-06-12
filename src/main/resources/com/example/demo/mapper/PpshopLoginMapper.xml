@@ -4,9 +4,19 @@
 
     <select id="login" parameterType="java.lang.String"
             resultType="com.example.demo.bean.PShopUser">
-        SELECT * FROM user_info WHERE
-#         userpassword =${PShopUser.userpassword}AND username =${PShopUser.username};
-        userpassword =${PShopUser.userpassword} AND username =${PShopUser.username} ;
+        SELECT *
+        FROM user_info
+        WHERE
+            #         userpassword =${PShopUser.userpassword}AND username =${PShopUser.username};
+            userpassword = ${PShopUser.userpassword} AND username = ${PShopUser.username};
     </select>
+
+
+    <insert id="reginaction" parameterType="com.example.demo.bean.PShopUser"
+         >
+        INSERT INTO user_info (username, userpassword, userpw, userphone, userstate)
+        VALUES
+            (#{PShopUser.username}, #{PShopUser.userpassword}, #{PShopUser.userpw}, #{PShopUser.userphone}, #{PShopUser.userstate})
+    </insert>
 
 </mapper>

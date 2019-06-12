@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class PpShopLoginServiceImpl implements PpshopLoginService {
     @Autowired
-    private  PpshopLoginMapper   PpshopLoginMapper;
+    private PpshopLoginMapper PpshopLoginMapper;
 
 
     /***
@@ -29,12 +29,24 @@ public class PpShopLoginServiceImpl implements PpshopLoginService {
 //    }
     @Override
     public PShopUser login(PShopUser pShopUser) {
-        List<PShopUser> listps=new ArrayList<PShopUser>();
-        System.out.println(pShopUser.getUsername()+"::::::？？？？？？"+pShopUser.getUserpassword());
-        PShopUser  listps1 =PpshopLoginMapper.login(pShopUser);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!"+listps1);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!"+listps1.getUserstate()+listps1.getUserphone());
+        List<PShopUser> listps = new ArrayList<PShopUser>();
+        System.out.println(pShopUser.getUsername() + "::::::？？？？？？" + pShopUser.getUserpassword());
+        PShopUser listps1 = PpshopLoginMapper.login(pShopUser);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + listps1);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + listps1.getUserstate() + listps1.getUserphone());
         return listps1;
+    }
+
+    /***
+     * 用户用于登陆的信息
+     * @param pShopUser
+     * @return
+     */
+    @Override
+    public boolean ReginActivon(PShopUser pShopUser) {
+
+        Boolean result = PpshopLoginMapper.reginaction(pShopUser);
+        return result;
     }
 
 
