@@ -13,10 +13,22 @@
 
 
     <insert id="reginaction" parameterType="com.example.demo.bean.PShopUser"
-         >
+    >
         INSERT INTO user_info (username, userpassword, userpw, userphone, userstate)
         VALUES
-            (#{PShopUser.username}, #{PShopUser.userpassword}, #{PShopUser.userpw}, #{PShopUser.userphone}, #{PShopUser.userstate})
+            (#{PShopUser.username}, #{PShopUser.userpassword}, #{PShopUser.userpw}, #{PShopUser.userphone},
+             #{PShopUser.userstate})
     </insert>
+
+    <update id="updatareginuser" parameterType="com.example.demo.bean.PShopUser">
+        UPDATE user_info
+        SET
+
+            userpassword = #{PShopUser.userpassword},
+            userpw       = #{PShopUser.userpw},
+            userphone    = #{PShopUser.userphone},
+            userstate    = #{PShopUser.userstate}
+        WHERE username = '2'
+    </update>
 
 </mapper>
