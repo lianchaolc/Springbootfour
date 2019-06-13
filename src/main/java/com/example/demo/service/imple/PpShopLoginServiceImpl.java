@@ -1,6 +1,7 @@
 package com.example.demo.service.imple;
 
 import com.example.demo.bean.PShopUser;
+import com.example.demo.domain.bo.CommonBO;
 import com.example.demo.service.PpshopLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,17 @@ public class PpShopLoginServiceImpl implements PpshopLoginService {
     public boolean ReginActivon(PShopUser pShopUser) {
 
         Boolean result = PpshopLoginMapper.reginaction(pShopUser);
+        return result;
+    }
+
+    /***
+     * 用于用户更新状态的方法 （用户重新输入密码）
+     * @param pShopUser
+     * @return
+     */
+    @Override
+    public boolean updatareginuser(PShopUser pShopUser) {
+        boolean  result=PpshopLoginMapper.updatareginuser(pShopUser);
         return result;
     }
 
