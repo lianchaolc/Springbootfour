@@ -11,9 +11,6 @@ import java.util.List;
 public interface UserMapper {
     //接口用户存储
     int save(@Param("user") User user);// 新增用户
-
     List<User> selectall();
-
-
     int  deleteuserbyname(@Param("username") String username);// 用户名称
 }

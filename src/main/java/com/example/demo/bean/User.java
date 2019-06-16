@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 用户实体累
  */
 public class User implements Serializable {
-    private String usertype;
+    private  String usertype;
     private  String  usertest;
     private  String usertel;
     private  String username;
