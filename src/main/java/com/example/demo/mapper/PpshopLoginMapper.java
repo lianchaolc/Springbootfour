@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.bean.PShopUser;
 import com.example.demo.bean.User;
+import com.example.demo.domain.bo.CommonBO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,13 @@ public interface PpshopLoginMapper {
      * @param PShopUser
      * @return
      */
-    boolean  reginaction(@Param("PShopUser") PShopUser PShopUser);
+    boolean reginaction(@Param("PShopUser") PShopUser PShopUser);
+
+    /**
+     * 更新用户
+     *
+     * @param PShopUser
+     * @return
+     */
+    boolean updatareginuser(@Param("PShopUser") PShopUser PShopUser);
 }

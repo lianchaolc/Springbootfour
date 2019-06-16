@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.bean.PShopUser;
+import com.example.demo.domain.Result;
+import com.example.demo.domain.bo.CommonBO;
 
 /****
  *
@@ -25,5 +27,10 @@ public interface PpshopLoginService {
      */
     boolean ReginActivon(PShopUser pShopUser);
 
+    /***
+     * 用户更新状态
+     * @param pShopUser
+     */
+    boolean updatareginuser(PShopUser pShopUser);
 
 }
