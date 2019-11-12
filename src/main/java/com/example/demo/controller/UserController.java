@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserController {
     @Autowired
     static Map<Long , User> map = new ConcurrentHashMap<>();
+    @Autowired
     private UserService userService;
 
     @PostMapping("/addUser")
@@ -53,7 +54,12 @@ public class UserController {
 //    原文：https://blog.csdn.net/oceanyang520/article/details/83120411
     @PostMapping("/selectall")
     public List<String> selectAll() {
-        List<String> list = userService.selectAll();
+        List<String> list;
+        if(null!=userService.selectAll()){
+            list = userService.selectAll();
+        }else{
+            return  null;
+        }
         return list;
     }
 
