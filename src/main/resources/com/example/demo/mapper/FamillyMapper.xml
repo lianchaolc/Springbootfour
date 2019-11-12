@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <insert id="save" >
+        insert into userinforbyweb(username, usertel, usertest,usertype)
+        VALUES (
+        #{user.username},
+        #{user.usertel},
+        #{user.usertest},
+        #{user.usertype}
+        )
+    </insert>
+
+
+    <select id="selectall" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.User">
+        SELECT * FROM family_table
+    </select>
+<!--通过姓名进行删除-->
+    <delete id="deleteuserbyname" parameterType="java.lang.String">
+            DELETE  FROM userinforbyweb WHERE username =#{username}
+     </delete>
+</mapper>
