@@ -14,7 +14,7 @@
 
     <select id="selectall" parameterType="java.lang.String"
             resultType="com.example.demo.bean.User">
-        SELECT * FROM family_table
+        SELECT * FROM family_tablefather
     </select>
 <!--通过姓名进行删除-->
     <delete id="deleteuserbyname" parameterType="java.lang.String">
