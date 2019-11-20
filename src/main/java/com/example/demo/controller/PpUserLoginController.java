@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.bean.PShopUser;
+import com.example.demo.domain.GeneralResult;
 import com.example.demo.domain.Result;
 import com.example.demo.domain.ResultGenerator;
 import com.example.demo.domain.bo.CommonBO;
@@ -38,19 +39,24 @@ import java.util.List;
 public class PpUserLoginController {
 
     @Autowired
-
-//    @Resource/
     private PpshopLoginService ppshopLoginService;
 
+    /****
+     *通过用户名   和密码 返回所有数据
+     * @param username
+     * @param userpassword
+     * @return
+     */
     @ResponseBody
     @PostMapping("/login")
-    public String getlogin(String username, String userpassword) {
-        System.out.print("IIIIIIIIIIIIIIIIIIIIII" + username + ":::" + userpassword);
-        if (username.equals("") || username == null) {
-            return "用户名为空";
+    public GeneralResult getlogin(String username,String userpassword) {
+        GeneralResult GeneralResult=new  GeneralResult();
+        System.out.print("username===" + username + "userpassword:::===" + userpassword);
+        if (null== username||username.equals("") ) {
+            return    GeneralResult.setMsg("用户名为空");
         }
-        if (userpassword.equals("") || userpassword == null) {
-            return "账户不能对";
+        if (null==userpassword||userpassword.equals("") ) {
+            return    GeneralResult.setMsg("账户不能对");
         }
 //    商城的登陆返回数据传入参数的校验判断
         System.out.println("XXXXXXX" + username + userpassword);
@@ -62,7 +68,17 @@ public class PpUserLoginController {
         System.out.println("I" + pShopUser.getUsername());
         System.out.println("II" + pShopUser.getUserpassword());
         PShopUser listlogin = ppshopLoginService.login(pShopUser);//   返回字符串jie'guo
-        return listlogin.toString();
+        if(null!=listlogin){
+
+
+
+        GeneralResult.setCode(200);
+        GeneralResult.setMsg("Success");
+        GeneralResult.setData(listlogin.toString());
+}
+
+
+        return GeneralResult;
     }
 
 

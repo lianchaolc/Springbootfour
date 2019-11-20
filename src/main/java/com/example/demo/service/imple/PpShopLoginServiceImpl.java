@@ -61,5 +61,15 @@ public class PpShopLoginServiceImpl implements PpshopLoginService {
         return result;
     }
 
+    /***
+     * 根据自己的信息显示家族信息
+     * @param pShopUser
+     * @return
+     */
+    @Override
+    public boolean selectfamily(PShopUser pShopUser) {
+        return false;
+    }
+
 
 }

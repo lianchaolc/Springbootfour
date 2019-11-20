@@ -33,4 +33,11 @@ public interface PpshopLoginService {
      */
     boolean updatareginuser(PShopUser pShopUser);
 
+    /***
+     * 查询祖先信息
+     * @param pShopUser
+     * @return
+     */
+    boolean   selectfamily(PShopUser pShopUser);
+
 }

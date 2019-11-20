@@ -14,6 +14,7 @@ public class PShopUser implements Serializable {
                 ", userpw='" + userpw + '\'' +
                 ", userphone='" + userphone + '\'' +
                 ", userstate='" + userstate + '\'' +
+                ", carid='" + carid + '\'' +
                 '}';
     }
 
@@ -22,6 +23,16 @@ public class PShopUser implements Serializable {
     private String userpw; //密码
     private String userphone;
     private String userstate;
+    private String  carid;
+    public String getCarid() {
+        return carid;
+    }
+
+    public void setCarid(String carid) {
+        this.carid = carid;
+    }
+
+
 
     public String getUsername() {
         return username;
