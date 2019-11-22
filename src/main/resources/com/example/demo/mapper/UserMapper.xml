@@ -20,4 +20,13 @@
     <delete id="deleteuserbyname" parameterType="java.lang.String">
             DELETE  FROM userinforbyweb WHERE username =#{username}
      </delete>
+    <!--查询单条通过用户的-->
+    <select id="selectbyid"  parameterType="java.lang.String" resultType="com.example.demo.bean.User">
+        SELECT * FROM userinforbyweb WHERE username=#{username}
+    </select>
+
+    <!--更新数据源-->
+    <update id="update" parameterType="java.lang.String">
+        UPDATE   userinforbyweb SET usertel=#{user.usertel},usertest=#{user.usertest},usertype=#{user.usertype} WHERE username=#{user.username}
+    </update>
 </mapper>
