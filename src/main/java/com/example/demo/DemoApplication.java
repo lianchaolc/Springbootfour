@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan(value = "com.example.demo.mapper")
 @SpringBootApplication
 @ComponentScan("com.example.demo.swagger")
-@EnableSwagger2
+@EnableSwagger2                  /// 启动swagger2 的注解
 public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
