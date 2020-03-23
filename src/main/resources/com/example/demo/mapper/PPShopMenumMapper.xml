@@ -2,7 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PpshopMenumMapper">
     <select id="resultlist" parameterType="java.lang.String"
-            resultType="com.example.demo.bean.ppshopmenum" >
-       SELECT  ppshopmenumname,ppshopmenumimage FROM  ppshopmenu
+            resultType="com.example.demo.bean.ppshopmenum">
+        SELECT
+            ppshopmenumname,
+            ppshopmenumimage
+        FROM ppshopmenu
+    </select>
+
+
+    <select id="ShopMenumbase" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.ppshopbean.ShopMenumbase">
+        SELECT *
+        FROM ppshop_menlist;
+    </select>
+    <select id="resultclasslist" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.ppshopbean.ShopMenunData">
+        SELECT *
+        FROM ppshop_menudatalist;
     </select>
 </mapper>
