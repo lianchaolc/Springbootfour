@@ -6,6 +6,11 @@ import com.example.demo.domain.Result;
 import com.example.demo.domain.ResultGenerator;
 import com.example.demo.domain.bo.CommonBO;
 import com.example.demo.service.PpshopLoginService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -37,10 +42,9 @@ import java.util.List;
 @EnableAutoConfiguration
 @RestController
 public class PpUserLoginController {
-
+    private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PpshopLoginService ppshopLoginService;
-
     /****
      *通过用户名   和密码 返回所有数据
      * @param username
@@ -48,36 +52,49 @@ public class PpUserLoginController {
      * @return
      */
     @ResponseBody
-    @PostMapping("/login")
+    @ApiOperation(value = "登陆请求页面")
+    @RequestMapping(value = "/pplogin", method = RequestMethod.PUT)
     public GeneralResult getlogin(String username,String userpassword) {
-        GeneralResult GeneralResult=new  GeneralResult();
-        System.out.print("username===" + username + "userpassword:::===" + userpassword);
-        if (null== username||username.equals("") ) {
-            return    GeneralResult.setMsg("用户名为空");
+        GeneralResult GeneralResult = new GeneralResult();
+        System.out.println("username===" + username + "userpassword:::===" + userpassword);
+        log.info("username!!!!!!", "" + username);
+        log.info("userpassword!!!!!!", "" + userpassword);
+
+        if (null == username || username.equals("")) {
+            return GeneralResult.setMsg("用户名为空");
         }
-        if (null==userpassword||userpassword.equals("") ) {
-            return    GeneralResult.setMsg("账户不能对");
+        if (null == userpassword || userpassword.equals("")) {
+            return GeneralResult.setMsg("账户不能对");
         }
 //    商城的登陆返回数据传入参数的校验判断
-        System.out.println("XXXXXXX" + username + userpassword);
+        System.out.println("XXXXXXXusername==userpassword==" + username + userpassword);
         PShopUser pShopUser = new PShopUser();
         pShopUser.setUsername(username);
         pShopUser.setUserpassword(userpassword);
-
-        System.out.println("IIIIIIIIIIIIIIIIIIIIII" + pShopUser);
-        System.out.println("I" + pShopUser.getUsername());
-        System.out.println("II" + pShopUser.getUserpassword());
         PShopUser listlogin = ppshopLoginService.login(pShopUser);//   返回字符串jie'guo
-        if(null!=listlogin){
-
-
-
-        GeneralResult.setCode(200);
-        GeneralResult.setMsg("Success");
-        GeneralResult.setData(listlogin.toString());
-}
-
-
+        if (null != listlogin || "null".equals(listlogin)) {
+            PShopUser pShopUserresult = new PShopUser();
+            pShopUserresult.setUserstate(listlogin.getUserstate());
+            pShopUserresult.setUserphone(listlogin.getUserphone());
+            pShopUserresult.setUsername(listlogin.getUsername());
+            pShopUserresult.setUserpw(listlogin.getUserpw());
+            pShopUserresult.setUserpassword(listlogin.getUserpassword());
+            pShopUserresult.setCarid(listlogin.getCarid());
+            System.out.println("IIIIIIIIIIIIIIIIIIIIII----" + pShopUserresult.getUsername());
+            System.out.println("IIIIIIIIIIIIIIIIIIIIII-----" + pShopUserresult.getUserpassword());
+            log.info( "---------" + pShopUserresult.getUsername() + "!!!" + pShopUserresult.getUsername());
+            GeneralResult.setCode(200);
+            GeneralResult.setMsg("Success");
+            GeneralResult.setData(pShopUserresult);
+            return GeneralResult;
+//      }else{
+//        log.info("我是nulluserpassword");
+//        GeneralResult.setCode(400);
+//        GeneralResult.setMsg("controller"+"查询数据失败");
+//        GeneralResult.setData("");
+//        return GeneralResult;
+//        }
+        }
         return GeneralResult;
     }
 
@@ -120,6 +137,8 @@ public class PpUserLoginController {
     public Result updatareginuser(String username, String userpassword,
                                   String userpw, String userphoen, String userstate) {
         System.out.print("II" + username + ":::" + userpassword + userpw + userphoen + userstate);
+        System.out.print("II！！！！！！！！！！！" + username + ":::" + userpassword );
+
 
         if (username.equals("") || username == null) {
             return ResultGenerator.genFailResult("账户名不能为null");
@@ -152,4 +171,9 @@ public class PpUserLoginController {
 //    }
         return null;
     }
+
+
+    /***
+     * 登陆页面
+     */
 }

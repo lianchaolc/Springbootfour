@@ -3,6 +3,9 @@ package com.example.demo.service;
 import com.example.demo.bean.PShopUser;
 import com.example.demo.domain.Result;
 import com.example.demo.domain.bo.CommonBO;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Map;
 
 /****
  *
@@ -12,7 +15,6 @@ import com.example.demo.domain.bo.CommonBO;
  *
  */
 public interface PpshopLoginService {
-
     /***
      * 用户登陆的放回信息
      * @param pShopUser
@@ -38,6 +40,25 @@ public interface PpshopLoginService {
      * @param pShopUser
      * @return
      */
-    boolean   selectfamily(PShopUser pShopUser);
+    boolean selectfamily(PShopUser pShopUser);
 
-}
+    /**
+     * 用户的注册并获取token
+     * @param username
+     * @param password
+     * @return
+     */
+    Map<String, String> regin (String username, String password);
+
+
+    public Map<String,String > register(String userName,String password);
+    public Map<String,Object> login(String username, String password);
+    public String addLoginTicket(int user_id);
+    public PShopUser getUser(int id);
+
+
+
+
+    public String getToken(PShopUser PShopUser)  ;
+    public PShopUser findByUsername(PShopUser PShopUser);
+};

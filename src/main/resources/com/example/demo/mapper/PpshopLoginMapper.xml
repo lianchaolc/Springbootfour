@@ -4,11 +4,7 @@
 
     <select id="login" parameterType="java.lang.String"
             resultType="com.example.demo.bean.PShopUser">
-        SELECT *
-        FROM user_info
-        WHERE
-            #         userpassword =${PShopUser.userpassword}AND username =${PShopUser.username};
-            userpassword = ${PShopUser.userpassword} AND username = ${PShopUser.username};
+        SELECT * FROM user_info WHERE username = #{PShopUser.username} AND userpassword = #{PShopUser.userpassword} ;
     </select>
 
 
