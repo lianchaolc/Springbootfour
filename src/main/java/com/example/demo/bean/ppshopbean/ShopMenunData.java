@@ -2,6 +2,9 @@ package com.example.demo.bean.ppshopbean;
 
 import java.util.List;
 
+/****
+ * 商城的菜单实体类
+ */
 public class ShopMenunData {
     private String type;
 
