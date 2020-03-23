@@ -1,5 +1,7 @@
 package com.example.demo.bean.ppshopbean;
 
+import java.util.List;
+
 /**
  * 家的实体类
  */
@@ -60,5 +62,5 @@ public class ppshopfamilybean {
     private String name;     //姓名
     private String DATE;    //开始时间
     private String EndDATE;//  结束时间
-
+    private List<role> rolelist;
 }
