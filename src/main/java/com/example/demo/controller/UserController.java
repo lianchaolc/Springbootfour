@@ -1,14 +1,15 @@
 package com.example.demo.controller;
 
 import com.example.demo.bean.User;
+import com.example.demo.domain.GeneralResult;
+import com.example.demo.domain.Result;
 import com.example.demo.mapper.UserMapper;
 
 import com.example.demo.service.UserService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.rmi.runtime.Log;
 
 import java.util.List;
 import java.util.Map;
@@ -17,48 +18,113 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 public class UserController {
     @Autowired
-    static Map<Long , User> map = new ConcurrentHashMap<>();
+    static Map<Long, User> map = new ConcurrentHashMap<>();
     @Autowired
     private UserService userService;
 
-    @PostMapping("/addUser")
+    @ApiOperation(value = "添加用户信息")
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "usertype", value = "用户类型", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "usertest", value = "手机测试", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "usertel", value = "手机号码", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "username", value = "用户名称", required = true, paramType = "query", dataType = "String"),
+    })
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
     public boolean addUser(User user) {
         boolean result = userService.saveUser(user);
         return result;
     }
 
-
+    @ApiOperation(value = "更新单条的记录")
+    @RequestMapping(value = "/updatauser", method = RequestMethod.PUT)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "usertype", value = "用户类型", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "usertest", value = "手机测试", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "usertel", value = "手机号码", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "username", value = "用户名称", required = true, paramType = "query", dataType = "String"),
+    })
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
     /***
-     * 通过id进行修改
-     * @param userid
+     * 更新单条的记录
+     * @param user
      * @return
      */
-//    public  boolean   addUserbyid(int userid){
-//  boolean result=userService.adduserbyid(userid);
-////        return result;
-//    }
+    public String UpdataUser(User user) {
+        GeneralResult GeneralResult = new GeneralResult();
+        if (null == user.getUsername()) {
+            return "要更新的条目名称不能为空";
+        }
+        System.out.println("updataResult======" + user.getUsername());
+        System.out.println("getUsertype======" + user.getUsertype());
+        System.out.println("getUsertest======" + user.getUsertest());
+        System.out.println("getUsertel======" + user.getUsertel());
+        boolean
+                updataResult = userService.update(user);
+        System.out.println("updataResult======" + updataResult);
+        if (updataResult) {
+            return "" + GeneralResult.setMsg("修改成功");
+        } else {
+            return
+                    "" + GeneralResult.setMsg("修改失败");
+        }
+
+    }
+
+
+    /***
+     * 通过id查询
+     * @param username
+     * @return
+     *
+     */
+    @ApiOperation(value = "通过一个用户名查找单条数据")
+    @RequestMapping(value="/selectbyid", method= RequestMethod.PUT)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户", required = true, paramType = "query", dataType = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    public List<String> selectbyid(String username) {
+        if(null!=username&&!username.isEmpty()){
+            List<String> list;
+            list = userService.selectbyid(username);
+            for (int i=0;i<list.size(); i++){
+                System.out.println("获取数据"+list.get(i));
+            }
+            return list;
+        }else{
+            System.out.println("获取数据是空");
+        }
+        return null;
+    }
+
 
     /***
      * 查询所有
      */
     @ApiOperation(value = "获取用户列表")
-//    @RequestMapping(value = "",method = RequestMethod.GET)
-    @RequestMapping("selectall")
+//    @RequestMapping(value = "selectall",method = RequestMethod.GET)
     @ResponseBody
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, paramType = "query", dataType = "String"),
-
-            @ApiImplicitParam(name = "nickName", value = "用户昵称", required = true, paramType = "query", dataType = "String")
-
+//            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, paramType = "query", dataType = "String"),
     })
-//    原文：https://blog.csdn.net/oceanyang520/article/details/83120411
     @PostMapping("/selectall")
     public List<String> selectAll() {
         List<String> list;
-        if(null!=userService.selectAll()){
+        if (null != userService.selectAll()) {
             list = userService.selectAll();
-        }else{
-            return  null;
+        } else {
+            return null;
         }
         return list;
     }
@@ -68,15 +134,13 @@ public class UserController {
      */
 
     @PostMapping("/deletebyid")
-    public   Boolean deletebyusername(String  username){
+    public Boolean deletebyusername(String username) {
 
-        System.out.println("usernaeme==="+username);
-       boolean
-               result = userService.deleteuserbyname(username);
+        System.out.println("usernaeme===" + username);
+        boolean
+                result = userService.deleteuserbyname(username);
         return result;
     }
-
-
 
 
 }
