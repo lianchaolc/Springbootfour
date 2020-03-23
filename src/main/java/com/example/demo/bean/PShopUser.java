@@ -23,7 +23,8 @@ public class PShopUser implements Serializable {
     private String userpw; //密码
     private String userphone;
     private String userstate;
-    private String  carid;
+    private String carid;
+
     public String getCarid() {
         return carid;
     }
@@ -31,7 +32,6 @@ public class PShopUser implements Serializable {
     public void setCarid(String carid) {
         this.carid = carid;
     }
-
 
 
     public String getUsername() {
