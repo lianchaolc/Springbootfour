@@ -11,13 +11,31 @@
         )
     </insert>
 
+    <select id="selectroleByUserid">
+        select * from role where userid=#{userid}
+    </select>
 
-    <select id="selectall" parameterType="java.lang.String"
-            resultType="com.example.demo.bean.User">
+    <!--<resultMap id="userMap" type="com.example.demo.bean.User">-->
+        <!--<id property="userid" column="userid"></id>-->
+        <!--<collection property="rolelist" column="userid" select="selectroleByUserid">-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+
+    <!--<select id="selectallTwo" parameterType="java.lang.String" resultMap="userMap">-->
+        <!--SELECT * FROM user-->
+    <!--</select>-->
+
+    <select id="selectall" parameterType="java.lang.String" resultType="com.example.demo.bean.User">
         SELECT * FROM family_tablefather
     </select>
 <!--通过姓名进行删除-->
     <delete id="deleteuserbyname" parameterType="java.lang.String">
             DELETE  FROM userinforbyweb WHERE username =#{username}
      </delete>
+    <!--更新代码  更新这个数据库表-->
+
+    <update id="updatatable"  parameterType="java.lang.String" >
+        UPDATE family_table SET cardid ='200',name='safa',usertype='s'
+    </update>
+
 </mapper>
