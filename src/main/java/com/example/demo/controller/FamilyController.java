@@ -1,16 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.bean.ppshopbean.ppshopfamilybean;
-import com.example.demo.domain.Result;
-import com.example.demo.mapper.FamilyMapper;
-import com.example.demo.mapper.PpshopLoginMapper;
+import com.example.demo.service.FamilyService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +21,7 @@ import java.util.List;
 public class FamilyController {
 
     @Autowired
-    private FamilyMapper familyMapper;
-
-    public List<ppshopfamilybean> getAll() {
-
-        return null;
-    }
-
+    private FamilyService familyService;
     /****
      * 通过自身的身份证号码和用户名登陆后可以查询自己的家族信息
      */
@@ -39,28 +29,31 @@ public class FamilyController {
     @RequestMapping(value = "/selectallbyusername", method = RequestMethod.PUT)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名称", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "Cardid", value = "用户名称Cardid", required = true, paramType = "query", dataType = "String")
+            @ApiImplicitParam(name = "Cardid", value = "用户Cardid", required = true, paramType = "query", dataType = "String")
     })
     @ApiResponses({
             @ApiResponse(code = 400, message = "请求参数没填好"),
             @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
     })
-
     private String GetAllFamilyResult(String username, String Cardid) {
         System.out.println("----" + username + "--------Cardid--" + Cardid);
         List<ppshopfamilybean> ppsfbeanlist = new ArrayList<ppshopfamilybean>();
         if (null == username || username.equals("")) {
             System.out.println("用户名不能为空");
             return "用户名不能为空";
-
-
         } else {
             if (null == Cardid || Cardid.equals("")) {
                 System.out.println("身份证号码不能是空");
                 return "身份证号码不能是空";
             } else {
-                ppsfbeanlist = familyMapper.ppshopfamilyList(username, Cardid);
-
+                System.out.println(username + "-----Cardid---"+Cardid);
+//                familybean f =new familybean();
+//                f.setCardid(Cardid);
+//                f.setName(username);
+                ppshopfamilybean  ppshopfamily=new ppshopfamilybean();
+                ppshopfamily.setCardid(Cardid);
+                ppshopfamily.setName(username);
+                ppsfbeanlist = familyService.Getfamilybean(ppshopfamily);
                 for (int i = 0; i < ppsfbeanlist.size(); i++) {
                     System.out.println(ppsfbeanlist.get(i) + "--------");
                 }
