@@ -2,6 +2,7 @@ package com.example.demo.service.imple;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.bean.ppshopbean.Lay;
 import com.example.demo.bean.ppshopbean.ShopMenumbase;
 import com.example.demo.bean.ppshopbean.ShopMenunData;
 import com.example.demo.mapper.PpshopMenumMapper;
@@ -51,8 +52,6 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
         Map<String, String> selectdata = new HashMap<>();
         List<Map<String, String>> resultdata = new ArrayList<Map<String, String>>();
         List<Map<String, String>> resultoutdata = new ArrayList<Map<String, String>>();
-//        resultdata = ppshopMenumMapper.resultclasslist();
-//        resultoutdata=ppshopMenumMapper.reslutlistdata();
         System.out.println("resultdata" + resultdata);
         List<ShopMenunData> listdata = new ArrayList<>();
         List<ShopMenumbase> listmenubase = new ArrayList<ShopMenumbase>();
@@ -85,4 +84,15 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
         System.out.println("resultoutdata" + resultoutdata);
         return resultdata01;
     }
+
+//    @Override
+//    public Lay getSysDepts(SysDept SysDept, Integer page, Integer limit) {
+//        return null;
+//    }
+
+    /***
+     * 创建分页类
+     */
+
+
 }
