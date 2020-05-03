@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.bean.PShopUser;
-import com.example.demo.domain.Result;
-import com.example.demo.domain.bo.CommonBO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.bean.familybean.p_shopEntity;
 
 import java.util.Map;
 
@@ -21,44 +18,47 @@ public interface PpshopLoginService {
      * @return
      *  //  查询用户是否存在于账户表中的记录
      */
-    PShopUser login(PShopUser pShopUser);
+    p_shopEntity login1(p_shopEntity pShopUser);
 
 
     /***
      * 用户用于注册 的接口
      */
-    boolean ReginActivon(PShopUser pShopUser);
+    boolean ReginActivon(p_shopEntity pShopUser);
 
     /***
      * 用户更新状态
      * @param pShopUser
      */
-    boolean updatareginuser(PShopUser pShopUser);
+    boolean updatareginuser(p_shopEntity pShopUser);
 
     /***
      * 查询祖先信息
      * @param pShopUser
      * @return
      */
-    boolean selectfamily(PShopUser pShopUser);
+    boolean selectfamily(p_shopEntity pShopUser);
 
     /**
      * 用户的注册并获取token
+     *
      * @param username
      * @param password
      * @return
      */
-    Map<String, String> regin (String username, String password);
+    Map<String, String> regin(String username, String password);
 
 
-    public Map<String,String > register(String userName,String password);
-    public Map<String,Object> login(String username, String password);
+    public Map<String, String> register(String userName, String password);
+
+    public String login2(String username, String password);
+
     public String addLoginTicket(int user_id);
-    public PShopUser getUser(int id);
+
+    public p_shopEntity getUser(int id);
 
 
+    public String getToken(p_shopEntity PShopUser);
 
-
-    public String getToken(PShopUser PShopUser)  ;
-    public PShopUser findByUsername(PShopUser PShopUser);
+    public p_shopEntity findByUsername(p_shopEntity PShopUser);
 };

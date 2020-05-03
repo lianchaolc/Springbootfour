@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PpshopLoginMapper">
-
     <select id="login" parameterType="java.lang.String"
-            resultType="com.example.demo.bean.PShopUser">
-        SELECT * FROM user_info WHERE username = #{PShopUser.username} AND userpassword = #{PShopUser.userpassword} ;
+            resultType="com.example.demo.bean.familybean.p_shopEntity">
+        SELECT *
+        FROM user_info
+        WHERE username = #{PShopUser.username} AND userpassword = #{PShopUser.userpassword};
     </select>
 
-
-    <insert id="reginaction" parameterType="com.example.demo.bean.PShopUser"
-    >
+    <insert id="reginaction" parameterType="com.example.demo.bean.familybean.p_shopEntity">
         INSERT INTO user_info (username, userpassword, userpw, userphone, userstate)
         VALUES
             (#{PShopUser.username}, #{PShopUser.userpassword}, #{PShopUser.userpw}, #{PShopUser.userphone},
              #{PShopUser.userstate})
     </insert>
 
-    <update id="updatareginuser" parameterType="com.example.demo.bean.PShopUser">
+    <update id="updatareginuser" parameterType="com.example.demo.bean.familybean.p_shopEntity">
         UPDATE user_info
         SET
-
             userpassword = #{PShopUser.userpassword},
             userpw       = #{PShopUser.userpw},
             userphone    = #{PShopUser.userphone},

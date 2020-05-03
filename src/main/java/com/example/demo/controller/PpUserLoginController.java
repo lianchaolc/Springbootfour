@@ -1,26 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.bean.PShopUser;
+//import com.example.demo.bean.PShopUser;
+import com.example.demo.bean.familybean.p_shopEntity;
 import com.example.demo.domain.GeneralResult;
 import com.example.demo.domain.Result;
 import com.example.demo.domain.ResultGenerator;
-import com.example.demo.domain.bo.CommonBO;
 import com.example.demo.service.PpshopLoginService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.bind.annotation.*;
-import sun.plugin2.message.Message;
-import sun.plugin2.message.Serializer;
-
-import javax.annotation.Resource;
-import java.io.IOException;
-import java.util.List;
 
 /****
  * pp
@@ -38,7 +29,6 @@ import java.util.List;
  */
 
 // 自动加载配置信息
-
 @EnableAutoConfiguration
 @RestController
 public class PpUserLoginController {
@@ -56,7 +46,6 @@ public class PpUserLoginController {
     @RequestMapping(value = "/pplogin", method = RequestMethod.PUT)
     public GeneralResult getlogin(String username,String userpassword) {
         GeneralResult GeneralResult = new GeneralResult();
-        System.out.println("username===" + username + "userpassword:::===" + userpassword);
         log.info("username!!!!!!", "" + username);
         log.info("userpassword!!!!!!", "" + userpassword);
 
@@ -68,12 +57,12 @@ public class PpUserLoginController {
         }
 //    商城的登陆返回数据传入参数的校验判断
         System.out.println("XXXXXXXusername==userpassword==" + username + userpassword);
-        PShopUser pShopUser = new PShopUser();
+        p_shopEntity pShopUser = new p_shopEntity();
         pShopUser.setUsername(username);
         pShopUser.setUserpassword(userpassword);
-        PShopUser listlogin = ppshopLoginService.login(pShopUser);//   返回字符串jie'guo
+        p_shopEntity listlogin = ppshopLoginService.login1(pShopUser);//   返回字符串jie'guo
         if (null != listlogin || "null".equals(listlogin)) {
-            PShopUser pShopUserresult = new PShopUser();
+            p_shopEntity pShopUserresult = new p_shopEntity();
             pShopUserresult.setUserstate(listlogin.getUserstate());
             pShopUserresult.setUserphone(listlogin.getUserphone());
             pShopUserresult.setUsername(listlogin.getUsername());
@@ -83,17 +72,11 @@ public class PpUserLoginController {
             System.out.println("IIIIIIIIIIIIIIIIIIIIII----" + pShopUserresult.getUsername());
             System.out.println("IIIIIIIIIIIIIIIIIIIIII-----" + pShopUserresult.getUserpassword());
             log.info( "---------" + pShopUserresult.getUsername() + "!!!" + pShopUserresult.getUsername());
-            GeneralResult.setCode(200);
+            GeneralResult.setCode(00);
             GeneralResult.setMsg("Success");
             GeneralResult.setData(pShopUserresult);
             return GeneralResult;
-//      }else{
-//        log.info("我是nulluserpassword");
-//        GeneralResult.setCode(400);
-//        GeneralResult.setMsg("controller"+"查询数据失败");
-//        GeneralResult.setData("");
-//        return GeneralResult;
-//        }
+
         }
         return GeneralResult;
     }
@@ -115,7 +98,7 @@ public class PpUserLoginController {
             return flag;
         }
         System.out.println("reginaction" + username + ":" + userpassword + ":" + userstate);
-        PShopUser pShopUser = new PShopUser();
+        p_shopEntity pShopUser = new p_shopEntity();
         pShopUser.setUserpassword(userpassword);
         pShopUser.setUsername(username);
         pShopUser.setUserphone(userphoen);
@@ -153,7 +136,7 @@ public class PpUserLoginController {
             return ResultGenerator.genFailResult("账户名不能为null");
         }
 
-        PShopUser pShopUser = new PShopUser();
+        p_shopEntity pShopUser = new p_shopEntity();
         pShopUser.setUserpw(userpw);
         pShopUser.setUsername(username);
         pShopUser.setUserphone(userphoen);
@@ -173,7 +156,7 @@ public class PpUserLoginController {
     }
 
 
-    /***
-     * 登陆页面
-     */
+
+
+
 }
