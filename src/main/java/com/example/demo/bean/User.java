@@ -53,4 +53,27 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 '}';
     }
+
+
+
+
+
+
+
+
+
 }
+//<!--
+//<select id="selectroleByUserid">
+//        select * from role where userid=#{userid}
+//</select>
+//        -->
+//<!--<resultMap id="userMap" type="com.example.demo.bean.User">-->
+//<!--<id property="userid" column="userid"></id>-->
+//<!--<collection property="rolelist" column="userid" select="selectroleByUserid">-->
+//<!--</collection>-->
+//<!--</resultMap>-->
+//
+//<!--<select id="selectallTwo" parameterType="java.lang.String" resultMap="userMap">-->
+//<!--SELECT * FROM user-->
+//<!--</select>-->
