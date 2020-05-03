@@ -1,7 +1,9 @@
 package com.example.demo.mapper;
 
+import com.example.demo.bean.familybean.PPMenumEntity;
 import com.example.demo.bean.ppshopbean.ShopMenumbase;
 import com.example.demo.bean.ppshopbean.ShopMenunData;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +22,12 @@ public interface PpshopMenumMapper {
     List<ShopMenunData>  resultclasslist();
 
     List<ShopMenumbase>   ShopMenumbase();
+
+
+    /***
+     * app 顶部数据
+     * @param strType   请求类型
+     * @return
+     */
+    List<PPMenumEntity> getMenum(@Param("strType") String strType);
 }

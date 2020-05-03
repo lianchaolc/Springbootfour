@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.bean.familybean.PPMenumEntity;
 import com.example.demo.bean.ppshopbean.Lay;
 
 import java.util.List;
@@ -21,5 +22,9 @@ public interface PPShopMenumService {
      * 实现分页
      */
 
-//    Lay getSysDepts(SysDept SysDept, Integer page, Integer limit);
+    /***
+     * 获取菜单的顶部数据  文字和图片
+     * @return
+     */
+    List<PPMenumEntity>  dataget(String strType);
 }

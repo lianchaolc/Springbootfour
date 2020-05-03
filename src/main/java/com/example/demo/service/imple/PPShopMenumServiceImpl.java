@@ -2,10 +2,13 @@ package com.example.demo.service.imple;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.bean.familybean.PPMenumEntity;
 import com.example.demo.bean.ppshopbean.Lay;
 import com.example.demo.bean.ppshopbean.ShopMenumbase;
 import com.example.demo.bean.ppshopbean.ShopMenunData;
+import com.example.demo.bean.ppshopmenum;
 import com.example.demo.mapper.PpshopMenumMapper;
+import com.example.demo.mapper.PpshopMenumTitleMapper;
 import com.example.demo.service.PPShopMenumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +22,22 @@ import java.util.Map;
 public class PPShopMenumServiceImpl implements PPShopMenumService {
     @Autowired
     private PpshopMenumMapper ppshopMenumMapper;
+    @Autowired
+    private PpshopMenumTitleMapper ppshopMenumTitleMapper;
 
+    /***
+     * 获取菜单列表
+     * @return
+     */
     @Override
     public List<Map<String, String>> Getmaplist() {
-        Map<String, String> map = new HashMap<>();
+//        Map<String, String> map = new HashMap<>();
         List<Map<String, String>> listmap = new ArrayList<Map<String, String>>();
         List<Map<String, String>> listmap1 = new ArrayList<Map<String, String>>();
         listmap = ppshopMenumMapper.resultlist();
-        map.put("", "");
-        map.put("", "");
-        listmap1.add(map);
+//        map.put("", "");
+//        map.put("", "");
+//        listmap1.add(map);
         System.out.println("我是空的结果" + listmap.toString());
         System.out.println(listmap.size() + "长度：：：：：");
         if (listmap.size() > 0) {
@@ -49,7 +58,7 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
     @Override
     public List<String> classification() {
         List<String> resultdata01 = new ArrayList<>();
-        Map<String, String> selectdata = new HashMap<>();
+
         List<Map<String, String>> resultdata = new ArrayList<Map<String, String>>();
         List<Map<String, String>> resultoutdata = new ArrayList<Map<String, String>>();
         System.out.println("resultdata" + resultdata);
@@ -84,6 +93,46 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
         System.out.println("resultoutdata" + resultoutdata);
         return resultdata01;
     }
+
+    @Override
+    public List<PPMenumEntity> dataget(String strType) {
+        if(strType.equals("")||strType==null){
+            System.out.print("输入数据有误");
+            return null;
+        }else{
+
+
+
+        List<PPMenumEntity>  ppshopTitlteList=new ArrayList<PPMenumEntity>();
+        ppshopTitlteList.clear();
+        ppshopTitlteList = ppshopMenumMapper.getMenum(strType);
+        int resutl=ppshopTitlteList.size();
+        System.out.print("---------------"+resutl);
+        if(resutl>0){
+            return ppshopTitlteList;
+        }
+        }
+        return null;
+    }
+
+    /***
+     * 返回顶部的菜单数据
+     * @return
+     */
+
+//    @Override
+//    public List<Map<String, String>> GetMenudata() {
+//        Map<String, String> titltemap = new HashMap<String, String>();
+//
+//        List<ppshopmenum> ppshopmenumslist = new ArrayList<ppshopmenum>();
+//        titltemap = ppshopMenumTitleMapper.resultlist();
+////        for (int i=0; listdata.size();i++){
+////
+////        }
+//        titltemap.put("1", "");
+//        titltemap.put("1", "");
+//        return null;
+//    }
 
 //    @Override
 //    public Lay getSysDepts(SysDept SysDept, Integer page, Integer limit) {
