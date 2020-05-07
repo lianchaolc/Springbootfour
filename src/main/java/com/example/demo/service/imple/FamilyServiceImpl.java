@@ -1,10 +1,15 @@
 package com.example.demo.service.imple;
 
 import com.example.demo.bean.ppshopbean.ppshopfamilybean;
+import com.example.demo.global.domain.bo.PageBO;
 import com.example.demo.mapper.FamilyMapper;
+import com.example.demo.query.PatrolplaceListQuery;
 import com.example.demo.service.FamilyService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.demo.global.domain.query.PageQuery.*;
 
 import java.util.List;
 
@@ -85,12 +90,49 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public List<ppshopfamilybean> Getfamilybean(ppshopfamilybean ppshopfamilybean) {
         System.out.println("：：：：：：" + ppshopfamilybean.getName()+"::::"+ppshopfamilybean.getCardid());
-        List<ppshopfamilybean> ppshopfamilylist = familyMapper.Getfamilybean
+        List<ppshopfamilybean> ppshopfamilylist =
+                familyMapper.Getfamilybean
                 (ppshopfamilybean.getCardid(),ppshopfamilybean.getName());
         if (null != ppshopfamilylist) {
-            System.out.println("返回长度：：：：：：" + ppshopfamilylist.size());
+            for (int j=0; j<ppshopfamilylist.size(); j++){
+                System.out.println("返回长度：：：：：：" + ppshopfamilylist.get(j));
+                System.out.println("返回长度：：：：：：" + ppshopfamilylist.get(j).getEndDATE());
+                System.out.println("返回长度：：：：：：" + ppshopfamilylist.get(j).getImagerurl());
+
+            }
+
             return ppshopfamilylist;
         }
+        return null;
+    }
+
+    /***
+     *  分页查询
+     * @param
+     * @param
+     * @return
+     *
+     * 传递  页数和当前m每页显示条数     */
+
+
+    @Override
+    public PageBO<ppshopfamilybean> page(PatrolplaceListQuery patrolplaceListQuery) {
+        if (patrolplaceListQuery.getPage() != null && patrolplaceListQuery.getLimit() != null) {
+            PageHelper.startPage(patrolplaceListQuery.getPage(), patrolplaceListQuery.getLimit(),true,false,true);
+        }
+        List<ppshopfamilybean> ppshopfamilylist =
+                familyMapper.page
+                        (patrolplaceListQuery);
+        PageInfo page = new PageInfo<>(ppshopfamilylist);
+        boolean flag = ppshopfamilylist.size() > 0;
+        PageBO<ppshopfamilybean> pageBO = new PageBO<>();
+        pageBO.setFlag(flag);
+        if (flag) {
+            pageBO.setCount(page.getTotal());
+            pageBO.setData(ppshopfamilylist);
+            return pageBO;
+        }
+        pageBO.setMsg("暂无数据");
         return null;
     }
 }
