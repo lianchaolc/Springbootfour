@@ -1,8 +1,13 @@
 package com.example.demo.service.imple;
 
 import com.example.demo.bean.User;
+import com.example.demo.bean.ppshopbean.ppshopfamilybean;
+import com.example.demo.global.domain.bo.PageBO;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
+import com.example.demo.userlistquery.UserListQuery;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import org.mortbay.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +19,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    /**
-     *
-     */
     @Autowired
     private UserMapper userMapper;
 
@@ -106,6 +108,39 @@ public class UserServiceImpl implements UserService {
         strlist.add(gso.toJson(list));
         return strlist;
     }
+
+    @Override
+    public PageBO<User> selectType(UserListQuery userListQuery) {
+        List<User>  selectTypelist=new ArrayList<>();
+        if (userListQuery.getPage() != null && userListQuery.getLimit() != null) {
+            PageHelper.startPage(userListQuery.getPage(), userListQuery.getLimit(),true,false,true);
+        }
+        List<User> ppshopfamilylist = userMapper.selectType(userListQuery);
+        PageInfo page = new PageInfo<>(ppshopfamilylist);
+        boolean flag = ppshopfamilylist.size() > 0;
+        PageBO<User> pageBO = new PageBO<>();
+        pageBO.setFlag(flag);
+        if (flag) {
+            pageBO.setCount(page.getTotal());
+            pageBO.setData(ppshopfamilylist);
+            return pageBO;
+        }
+
+
+        return null;
+    }
+
+//    @Override
+//    public List<User> selectType(String pager, String papgershowtoto) {
+//
+//        List<User>  selectTypelist=new ArrayList<>();
+//        selectTypelist=userMapper.selectType(pager,papgershowtoto);
+//        if(selectTypelist==null){
+//         return null;
+//         }else{
+//            return  selectTypelist;
+//        }
+//    }
 
 
 }

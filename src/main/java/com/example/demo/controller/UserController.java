@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
 import com.example.demo.bean.User;
+import com.example.demo.bean.ppshopbean.ppshopfamilybean;
 import com.example.demo.domain.GeneralResult;
+import com.example.demo.domain.PageResult;
 import com.example.demo.domain.Result;
+import com.example.demo.global.domain.bo.PageBO;
 import com.example.demo.mapper.UserMapper;
 
 import com.example.demo.service.UserService;
+import com.example.demo.userlistquery.UserListQuery;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -142,5 +146,34 @@ public class UserController {
         return result;
     }
 
+
+    /***
+     * 进行分页查询
+     */
+    @RequestMapping(value = "/selectAllbytype", method = RequestMethod.PUT)
+    @ApiImplicitParams({
+    })
+    @ApiOperation(value = "用户登陆进行查询带分页")
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    @GetMapping
+    @PostMapping("/selectAllbytype")
+    public Result selectAllbytype(UserListQuery userListQuery) {
+        GeneralResult  generalResult=new GeneralResult();;
+        PageBO<User> systemUserList = userService.selectType(userListQuery);
+        generalResult.setData(systemUserList);
+        generalResult.setCode(00);
+        if (null != systemUserList) {
+            return  generalResult;
+        } else {
+            generalResult.setData("数据返回为null");
+            generalResult.setCode(99);
+
+            return null;
+        }
+
+    }
 
 }

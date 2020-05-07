@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
 import com.example.demo.bean.User;
+import com.example.demo.query.PatrolplaceListQuery;
+import com.example.demo.userlistquery.UserListQuery;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -21,4 +23,12 @@ public interface UserMapper {
 //    @Select("select * from user where id = #{id}")
 //    boolean  findById(@Param("id") String id);
       List<User> selectbyid(@Param("username") String username);
+
+    /***
+     *
+     * @param userListQuery
+     * @return
+     * 分页查询
+     */
+      List<User> selectType(UserListQuery userListQuery);
 }

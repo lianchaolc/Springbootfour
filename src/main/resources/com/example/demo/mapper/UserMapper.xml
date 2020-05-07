@@ -29,4 +29,10 @@
     <update id="update" parameterType="java.lang.String">
         UPDATE   userinforbyweb SET usertel=#{user.usertel},usertest=#{user.usertest},usertype=#{user.usertype} WHERE username=#{user.username}
     </update>
+
+    <!--分页sql-->
+    <select id="selectType" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.User">
+        SELECT * FROM  userinforbyweb ORDER BY  userid asc
+    </select>
 </mapper>
