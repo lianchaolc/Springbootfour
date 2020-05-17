@@ -12,7 +12,10 @@
 <div style=""></div>
 <h1 style="">输入用户信息页面</h1>
 <header style="width: 150px ;height: auto ; ">用户信息录入页面</header>
-<div style="text-align: center ;width: 250px ;height: auto ;  margin-top: 20px;background-color: #00F7DE">
+<div style="text-align: center ; height:100%;
+                width: 100%;
+                margin: 0;
+                padding: 0;  margin-top: 20px;background-color: #00F7DE">
     <input type="text" id="username" type="hidden"/>人员姓名</input>
     <input type="text" id="usertel" type="hidden"/>人员电话</input>
     <input type="text" id="usertest" type="hidden"/>人员类型</input>
@@ -59,6 +62,7 @@
 <button id="btn_delete" onclick="deletebyid()" type="button">删除id</button>
 <button id="selectbyid" onclick="selectbyid()" type="button">查</button>
 <input type="text" id="selectid" type="hidden"/>请输入要查询的人员姓名</input>
+<button id="imageup" onclick="imageup()" type="button">跳转页面</button>
 </body>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
@@ -67,18 +71,23 @@
     function sureadduser() {
         console.log("username" + document.getElementById("username").value);
         console.log("usertel" + document.getElementById("usertel").value);
-        console.log("usertest" + document.getElementById("usertest").innerHTML);
-        console.log("usertype" + document.getElementById("usertype").innerHTML);
+        console.log("usertest" + document.getElementById("usertest").value);
+        console.log("usertype" + document.getElementById("usertype").value);
 
-        if (document.getElementById("username").innerHTML == null) {
+        if (document.getElementById("username").innerHTML == null || document.getElementById("username").value == "") {
             console.info("是null  不能提交");
             alert('网络不行，请检查数据是否填写完成')
             return;
-        } else if (document.getElementById("usertest").innerHTML == null) {
+        } else if (document.getElementById("usertel").innerHTML == null || document.getElementById("usertel").value == "") {
+            alert('usertest是null，请检查数据是否填写完成')
+            return;
+        } else if (document.getElementById("usertest").innerHTML == null || document.getElementById("usertest").value == "") {
+            alert('usertest是null，请检查数据是否填写完成')
+            return;
+        } else if (document.getElementById("usertype").innerHTML == null || document.getElementById("usertype").value == "") {
             alert('usertest是null，请检查数据是否填写完成')
             return;
         } else {
-
             $.ajax({
                 url: "/addUser",
                 type: "POST",
@@ -105,6 +114,11 @@
     function selectall() {
         console.log("跳转新页面");
         window.location.href = '/hello.html';
+    }
+
+    function imageup() {
+        console.log("跳转新页面");
+        window.location.href = '/UpdataImage.html';
     }
 
     function selectall() {
