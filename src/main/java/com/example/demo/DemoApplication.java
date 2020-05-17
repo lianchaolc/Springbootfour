@@ -8,7 +8,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-//@EnableSwagger2Doc
 @ComponentScan
 @ServletComponentScan
 @MapperScan(value = "com.example.demo.mapper")
