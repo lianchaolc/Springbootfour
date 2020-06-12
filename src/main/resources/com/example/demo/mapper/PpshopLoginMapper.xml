@@ -22,7 +22,7 @@
             userpw       = #{PShopUser.userpw},
             userphone    = #{PShopUser.userphone},
             userstate    = #{PShopUser.userstate}
-        WHERE username = '2'
+        WHERE username =#{PShopUser.userstate}
     </update>
 
 </mapper>
