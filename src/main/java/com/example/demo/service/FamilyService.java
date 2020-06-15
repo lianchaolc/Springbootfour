@@ -4,6 +4,8 @@ import com.example.demo.bean.ppshopbean.ppshopfamilybean;
 import com.example.demo.global.domain.bo.PageBO;
 import com.example.demo.query.PatrolplaceListQuery;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,4 +17,7 @@ public interface FamilyService {
 
 //   public  pageBO<ppshopfamilybean> page(int pageNum, int pageSize);
     PageBO<ppshopfamilybean> page(PatrolplaceListQuery patrolplaceListQuery);
+
+//    boolean uploadImg(@RequestParam("file") MultipartFile file, String id);
+
 }
