@@ -110,6 +110,7 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
         System.out.print("---------------"+resutl);
         if(resutl>0){
             return ppshopTitlteList;
+        }else{
         }
         }
         return null;
@@ -120,24 +121,7 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
      * @return
      */
 
-//    @Override
-//    public List<Map<String, String>> GetMenudata() {
-//        Map<String, String> titltemap = new HashMap<String, String>();
 //
-//        List<ppshopmenum> ppshopmenumslist = new ArrayList<ppshopmenum>();
-//        titltemap = ppshopMenumTitleMapper.resultlist();
-////        for (int i=0; listdata.size();i++){
-////
-////        }
-//        titltemap.put("1", "");
-//        titltemap.put("1", "");
-//        return null;
-//    }
-
-//    @Override
-//    public Lay getSysDepts(SysDept SysDept, Integer page, Integer limit) {
-//        return null;
-//    }
 
     /***
      * 创建分页类
