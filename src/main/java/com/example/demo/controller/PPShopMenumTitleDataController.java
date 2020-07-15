@@ -26,7 +26,7 @@ public class PPShopMenumTitleDataController {
     /***
      *返回菜单页面的顶部数据
      */
-    @ApiOperation(value = "获取菜单顶部的数据")
+    @ApiOperation(value = "获取菜单顶部的数据  0或者3")
     @RequestMapping(value = "getTitleMenumdata", method = RequestMethod.GET)
     @ResponseBody
     @ApiImplicitParams({
@@ -47,6 +47,11 @@ public class PPShopMenumTitleDataController {
         }
         return General;
     }
+
+    /****************
+     *实现web页面的分页
+     */
+
 
 }
 
