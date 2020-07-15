@@ -90,7 +90,7 @@ public class UserController {
      *
      */
     @ApiOperation(value = "通过一个用户名查找单条数据")
-    @RequestMapping(value="/selectbyid", method= RequestMethod.PUT)
+    @RequestMapping(value = "/selectbyid", method = RequestMethod.PUT)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户", required = true, paramType = "query", dataType = "String")
     })
@@ -99,14 +99,14 @@ public class UserController {
             @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
     })
     public List<String> selectbyid(String username) {
-        if(null!=username&&!username.isEmpty()){
+        if (null != username && !username.isEmpty()) {
             List<String> list;
             list = userService.selectbyid(username);
-            for (int i=0;i<list.size(); i++){
-                System.out.println("获取数据"+list.get(i));
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println("获取数据" + list.get(i));
             }
             return list;
-        }else{
+        } else {
             System.out.println("获取数据是空");
         }
         return null;
@@ -161,12 +161,13 @@ public class UserController {
     @GetMapping
     @PostMapping("/selectAllbytype")
     public Result selectAllbytype(UserListQuery userListQuery) {
-        GeneralResult  generalResult=new GeneralResult();;
+        GeneralResult generalResult = new GeneralResult();
+        ;
         PageBO<User> systemUserList = userService.selectType(userListQuery);
         generalResult.setData(systemUserList);
         generalResult.setCode(00);
         if (null != systemUserList) {
-            return  generalResult;
+            return generalResult;
         } else {
             generalResult.setData("数据返回为null");
             generalResult.setCode(99);
