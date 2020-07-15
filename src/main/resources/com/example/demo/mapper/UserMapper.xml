@@ -8,7 +8,11 @@
         #{user.usertel},
         #{user.usertest},
         #{user.usertype}
-        )
+        )ON DUPLICATE KEY UPDATE username=  #{user.username},usertel= #{user.username}
+
+
+
+
     </insert>
 
 
@@ -36,3 +40,4 @@
         SELECT * FROM  userinforbyweb ORDER BY  userid asc
     </select>
 </mapper>
+<!--on DUPLICATE key update userid=userid+values(userid) -->
