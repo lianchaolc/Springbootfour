@@ -111,9 +111,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageBO<User> selectType(UserListQuery userListQuery) {
-        List<User>  selectTypelist=new ArrayList<>();
+        List<User> selectTypelist = new ArrayList<>();
         if (userListQuery.getPage() != null && userListQuery.getLimit() != null) {
-            PageHelper.startPage(userListQuery.getPage(), userListQuery.getLimit(),true,false,true);
+            PageHelper.startPage(userListQuery.getPage(), userListQuery.getLimit(), true, false, true);
         }
         List<User> ppshopfamilylist = userMapper.selectType(userListQuery);
         PageInfo page = new PageInfo<>(ppshopfamilylist);
