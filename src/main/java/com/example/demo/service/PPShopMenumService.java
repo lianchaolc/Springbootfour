@@ -27,4 +27,10 @@ public interface PPShopMenumService {
      * @return
      */
     List<PPMenumEntity>  dataget(String strType);
+
+    /**
+     * 猜你喜欢
+     * @return
+     */
+    List<PPMenumEntity>  listlike();
 }

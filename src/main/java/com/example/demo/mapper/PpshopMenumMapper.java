@@ -30,4 +30,11 @@ public interface PpshopMenumMapper {
      * @return
      */
     List<PPMenumEntity> getMenum(@Param("strType") String strType);
+
+    /***
+     * 获取猜你喜欢的数据
+     * @return
+     */
+
+    List<PPMenumEntity> ResultLikeData();
 }

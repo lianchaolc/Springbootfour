@@ -114,6 +114,33 @@ public class PPShopMenumController {
         return General;
     }
 
+/***
+ *20200826
+ * 实现猜你喜欢的代码
+ *
+ */
+@ApiOperation(value = "猜你喜欢")
+@RequestMapping(value = "GetLoginLike", method = RequestMethod.GET)
+@ResponseBody
+@ApiImplicitParams({
+
+})
+public GeneralResult GetLoginLike( ) {
+    GeneralResult General = new GeneralResult();
+    List<PPMenumEntity>  PPMenumliststring=new ArrayList<PPMenumEntity>();
+    PPMenumliststring=ppShopMenumService.listlike();
+    if(PPMenumliststring==null||PPMenumliststring.equals("")){
+        General.setCode(99);
+        General.setMsg("无数据");
+        return General;
+    }else{
+        General.setData(PPMenumliststring);
+        General.setCode(00);
+        General.setMsg("Success");
+    }
+    return General;
+}
+
 
 }
 

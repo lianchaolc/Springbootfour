@@ -116,6 +116,20 @@ public class PPShopMenumServiceImpl implements PPShopMenumService {
         return null;
     }
 
+    @Override
+    public List<PPMenumEntity> listlike() {
+        List<PPMenumEntity> ppshopTitlteList = new ArrayList<PPMenumEntity>();
+        ppshopTitlteList.clear();
+        ppshopTitlteList = ppshopMenumMapper.ResultLikeData();
+        int resutl = ppshopTitlteList.size();
+        System.out.print("---------------" + resutl);
+        if (resutl > 0) {
+            return ppshopTitlteList;
+        } else {
+            return null;
+        }
+    }
+
     /***
      * 返回顶部的菜单数据
      * @return
