@@ -42,20 +42,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional//  事物注解
-    public List<String> selectAll() {
+    public List<User> selectAll() {
         List<User> list = new ArrayList<User>();
         List<String> strlist = new ArrayList<String>();
         list.clear();
         list = userMapper.selectall();
-        Gson gso = new Gson();
-        strlist.add(gso.toJson(list));
-        for (int i = 0; i < strlist.size(); i++) {
-            System.out.println("长度！！！！！" + strlist.size());
-            System.out.println("长度！！！！！" + strlist.get(i));
-        }
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println("长度！！！！！" + list.get(i));
+//            strlist.add(list.get(i));
+//        }
+//        Gson gso = new Gson();
+//        strlist.add(gso.toJson(list));
+//        for (int i = 0; i < strlist.size(); i++) {
+//            System.out.println("长度！！！！！" + strlist.size());
+//            System.out.println("长度！！！！！" + strlist.get(i));
+//        }
         Log.info("", "" + list.size());
         System.out.println("长度！！！！！" + list.size());
-        return strlist;
+        return list;
     }
 
 

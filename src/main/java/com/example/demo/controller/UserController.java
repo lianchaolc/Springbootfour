@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.rmi.runtime.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -117,20 +118,24 @@ public class UserController {
      * 查询所有
      */
     @ApiOperation(value = "获取用户列表")
-//    @RequestMapping(value = "selectall",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectall",method = RequestMethod.GET)
     @ResponseBody
     @ApiImplicitParams({
 //            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, paramType = "query", dataType = "String"),
     })
-    @PostMapping("/selectall")
-    public List<String> selectAll() {
+//    @PostMapping("/selectall")
+    public GeneralResult selectAll() {
+        GeneralResult General = new GeneralResult();
         List<String> list;
+        List<User>   userlistall=new ArrayList<>();
         if (null != userService.selectAll()) {
-            list = userService.selectAll();
+            userlistall = userService.selectAll();
         } else {
             return null;
         }
-        return list;
+        General.setMsg("成功");
+        General.setData(userlistall);
+        return General;
     }
 
     /***
@@ -139,7 +144,6 @@ public class UserController {
 
     @PostMapping("/deletebyid")
     public Boolean deletebyusername(String username) {
-
         System.out.println("usernaeme===" + username);
         boolean
                 result = userService.deleteuserbyname(username);

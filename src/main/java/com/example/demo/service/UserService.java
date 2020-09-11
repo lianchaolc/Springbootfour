@@ -13,7 +13,7 @@ public interface UserService {
     boolean saveUser(User user);
 
     // 查询所有的数据
-    List<String> selectAll();
+    List<User> selectAll();
 
     //删除单条数据记录
     boolean deleteuserbyname(String username);
