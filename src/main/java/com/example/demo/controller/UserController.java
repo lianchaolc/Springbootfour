@@ -124,18 +124,18 @@ public class UserController {
 //            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, paramType = "query", dataType = "String"),
     })
 //    @PostMapping("/selectall")
-    public GeneralResult selectAll() {
+    public   List<User> selectAll() {
         GeneralResult General = new GeneralResult();
-        List<String> list;
         List<User>   userlistall=new ArrayList<>();
         if (null != userService.selectAll()) {
             userlistall = userService.selectAll();
+            return userlistall;
         } else {
             return null;
         }
-        General.setMsg("成功");
-        General.setData(userlistall);
-        return General;
+//        General.setMsg("成功");
+//        General.setData(userlistall);
+//        return General;
     }
 
     /***
@@ -166,7 +166,6 @@ public class UserController {
     @PostMapping("/selectAllbytype")
     public Result selectAllbytype(UserListQuery userListQuery) {
         GeneralResult generalResult = new GeneralResult();
-        ;
         PageBO<User> systemUserList = userService.selectType(userListQuery);
         generalResult.setData(systemUserList);
         generalResult.setCode(00);
