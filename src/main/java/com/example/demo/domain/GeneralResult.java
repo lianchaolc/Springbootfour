@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * 一般的响应结果封装
  */
@@ -38,5 +40,11 @@ public class GeneralResult implements Result{
     public GeneralResult setData(Object data) {
         this.data = data;
         return this;
+    }
+
+    @Override
+    public String toString() {
+
+        return JSON.toJSONString(this);
     }
 }
