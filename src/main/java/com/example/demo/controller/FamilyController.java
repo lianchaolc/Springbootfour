@@ -31,7 +31,7 @@ import java.util.*;
  * 图片
  * 201911.12
  * lc
- *
+ * <p>
  * https://github.com/ddxygq/spring-boot-learn springboot 学习  的网址
  */
 @RestController
@@ -79,9 +79,7 @@ public class FamilyController {
                 ppshopfamilybean ppshopfamily = new ppshopfamilybean();
                 ppshopfamily.setCardid(Cardid);
                 ppshopfamily.setName(username);
-
                 ppsfbeanlist = familyService.Getfamilybean(ppshopfamily);
-
                 General.setMsg("Success");
                 General.setCode(00);
                 General.setData(ppshopfamily);
@@ -109,11 +107,9 @@ public class FamilyController {
     @GetMapping
     public Result selectReturnData(PatrolplaceListQuery patrolplaceListQuery) {
         GeneralResult generalResult = new GeneralResult();
-        ;
         PageBO<ppshopfamilybean> systemUserList = familyService.page(patrolplaceListQuery);
         generalResult.setData(systemUserList);
         generalResult.setCode(00);
-
         return generalResult;
     }
 
