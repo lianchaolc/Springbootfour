@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.bean.User;
-import com.example.demo.bean.ppshopbean.ppshopfamilybean;
 import com.example.demo.global.domain.bo.PageBO;
-import com.example.demo.query.PatrolplaceListQuery;
 import com.example.demo.userlistquery.UserListQuery;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public interface UserService {
     boolean update(User user);
 
     //  通过id查询单条数据
-    List<String> selectbyid(String username);
+    List<User> selectbyid(String username);
 
     //进行分页查询   传递页数  和当前页显示的条数
 //    List<User> selectType(String pager,String papgershowtoto);
