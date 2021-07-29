@@ -104,13 +104,21 @@ public class UserServiceImpl implements UserService {
      */
     @Transactional//  事物注解
     @Override
-    public List<String> selectbyid(String username) {
+    public List<User> selectbyid(String username) {
         List<User> list = new ArrayList<User>();
         List<String> strlist = new ArrayList<String>();
         list = userMapper.selectbyid(username);
-        Gson gso = new Gson();
-        strlist.add(gso.toJson(list));
-        return strlist;
+//        Gson gso = new Gson();
+        if(list.size()!=0){
+            for (int  i=0; i<list.size() ; i++){
+                User  user=new User();
+                strlist.add(list.get(i).getUsername());
+                strlist.add(list.get(i).getUsertel());
+                strlist.add(list.get(i).getUsertest());
+                strlist.add(list.get(i).getUsertype());
+            }
+        }
+        return list;
     }
 
     @Override
