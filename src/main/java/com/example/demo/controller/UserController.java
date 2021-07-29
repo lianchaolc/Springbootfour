@@ -1,29 +1,28 @@
 package com.example.demo.controller;
 
 import com.example.demo.bean.User;
-import com.example.demo.bean.ppshopbean.ppshopfamilybean;
 import com.example.demo.domain.GeneralResult;
-import com.example.demo.domain.PageResult;
 import com.example.demo.domain.Result;
 import com.example.demo.global.domain.bo.PageBO;
-import com.example.demo.mapper.UserMapper;
 
 import com.example.demo.service.UserService;
 import com.example.demo.userlistquery.UserListQuery;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.rmi.runtime.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
+//private int shop_carinfiid;  //  id
+//private int shop_carinfocoutt;   // 单个商品数量
+//private double shop_carinfomoney;//  单个商品钱数
+//private String shop_carinfoname; //  商品名称
+//private String shop_carinfourl; //  商品显示图片
 @RestController
 public class UserController {
-    @Autowired
-    static Map<Long, User> map = new ConcurrentHashMap<>();
     @Autowired
     private UserService userService;
 
@@ -99,15 +98,23 @@ public class UserController {
             @ApiResponse(code = 400, message = "请求参数没填好"),
             @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
     })
-    public List<String> selectbyid(String username) {
+    public GeneralResult selectbyid(String username) {
+        GeneralResult GeneralResult = new GeneralResult();
         if (null != username && !username.isEmpty()) {
-            List<String> list;
+            List<User> list;
             list = userService.selectbyid(username);
             for (int i = 0; i < list.size(); i++) {
                 System.out.println("获取数据" + list.get(i));
             }
-            return list;
+            GeneralResult.setCode(00);
+            GeneralResult.setMsg("成功");
+            GeneralResult.setData(list);
+            return GeneralResult;
         } else {
+
+            GeneralResult.setCode(99);
+            GeneralResult.setMsg("失败");
+            GeneralResult.setData(null);
             System.out.println("获取数据是空");
         }
         return null;
@@ -124,18 +131,18 @@ public class UserController {
 //            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, paramType = "query", dataType = "String"),
     })
 //    @PostMapping("/selectall")
-    public   List<User> selectAll() {
-        GeneralResult General = new GeneralResult();
+    public   GeneralResult selectAll() {
+        GeneralResult GeneralResult = new GeneralResult();
         List<User>   userlistall=new ArrayList<>();
         if (null != userService.selectAll()) {
             userlistall = userService.selectAll();
-            return userlistall;
+
+            GeneralResult.setMsg("成功");
+            GeneralResult.setData(userlistall);
+            return GeneralResult;
         } else {
             return null;
         }
-//        General.setMsg("成功");
-//        General.setData(userlistall);
-//        return General;
     }
 
     /***
