@@ -1,7 +1,11 @@
 package com.example.demo.bean.familybean;
+
 import java.io.Serializable;
 
-public class PPMenumEntity  implements Serializable{
+/***
+ * 顶部的 图片和文字
+ */
+public class PPMenumEntity implements Serializable {
     public PPMenumEntity(String pp_menum_textimage, String pp_menum_texttitle, String pp_menum_state) {
         this.pp_menum_textimage = pp_menum_textimage;
         this.pp_menum_texttitle = pp_menum_texttitle;
