@@ -17,7 +17,4 @@ public interface FamilyService {
 
 //   public  pageBO<ppshopfamilybean> page(int pageNum, int pageSize);
     PageBO<ppshopfamilybean> page(PatrolplaceListQuery patrolplaceListQuery);
-
-//    boolean uploadImg(@RequestParam("file") MultipartFile file, String id);
-
 }

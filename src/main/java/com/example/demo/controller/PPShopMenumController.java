@@ -31,14 +31,13 @@ public class PPShopMenumController {
     @RequestMapping(value = "Getmaplist", method = RequestMethod.GET)
     @ResponseBody
     @ApiImplicitParams({
-//            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, paramType = "query", dataType = "String"),
     })
     public GeneralResult Getmaplist() {
         GeneralResult General = new GeneralResult();
         List<Map<String, String>> list_code = new ArrayList<Map<String, String>>();
         list_code.clear();
         list_code = ppShopMenumService.Getmaplist();
-        if (null == list_code||list_code.equals("")) {
+        if (null == list_code || list_code.equals("")) {
             System.out.println("空的：：：：" + list_code.toString());
             General.setMsg("请求失败");
             General.setCode(99);
@@ -68,13 +67,12 @@ public class PPShopMenumController {
     })
     public GeneralResult getResultMenum() {
         GeneralResult General = new GeneralResult();
-        List<String>  menuList=new ArrayList<String>();
+        List<String> menuList = new ArrayList<String>();
 //        迟永真
-        Map<String,String>  map= new  HashMap<String,String>();
-        List<Map<String,String>>  menuList1=new ArrayList<>();
-        List<String  >  ssssliststring=new ArrayList<>();
-        ssssliststring=ppShopMenumService.classification();
-        System.out.println("menuList1=="+ssssliststring);
+        List<Map<String, String>> menuList1 = new ArrayList<>();
+        List<String> ssssliststring = new ArrayList<>();
+        ssssliststring = ppShopMenumService.classification();
+        System.out.println("menuList1==" + ssssliststring);
         General.setData(ssssliststring);
         return General;
     }
@@ -97,16 +95,16 @@ public class PPShopMenumController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "strType", value = "需要请求的类型type=0,网络安全，type=1，商品类", required = true, paramType = "query", dataType = "String"),
     })
-    public GeneralResult getResultMenum2(String  strType ) {
+    public GeneralResult getResultMenum2(String strType) {
         GeneralResult General = new GeneralResult();
-        List<PPMenumEntity>  PPMenumliststring=new ArrayList<PPMenumEntity>();
-        PPMenumliststring=ppShopMenumService.dataget(strType);
-        System.out.println("menuList1========="+PPMenumliststring);
-        if(PPMenumliststring==null||PPMenumliststring.equals("")){
+        List<PPMenumEntity> PPMenumliststring = new ArrayList<PPMenumEntity>();
+        PPMenumliststring = ppShopMenumService.dataget(strType);
+        System.out.println("menuList1=========" + PPMenumliststring);
+        if (PPMenumliststring == null || PPMenumliststring.equals("")) {
             General.setCode(99);
             General.setMsg("无数据");
             return General;
-        }else{
+        } else {
             General.setData(PPMenumliststring);
             General.setCode(00);
             General.setMsg("Success");
@@ -114,32 +112,32 @@ public class PPShopMenumController {
         return General;
     }
 
-/***
- *20200826
- * 实现猜你喜欢的代码
- *
- */
-@ApiOperation(value = "猜你喜欢")
-@RequestMapping(value = "GetLoginLike", method = RequestMethod.GET)
-@ResponseBody
-@ApiImplicitParams({
+    /***
+     *20200826
+     * 实现猜你喜欢的代码
+     *
+     */
+    @ApiOperation(value = "猜你喜欢")
+    @RequestMapping(value = "GetLoginLike", method = RequestMethod.GET)
+    @ResponseBody
+    @ApiImplicitParams({
 
-})
-public GeneralResult GetLoginLike( ) {
-    GeneralResult General = new GeneralResult();
-    List<PPMenumEntity>  PPMenumliststring=new ArrayList<PPMenumEntity>();
-    PPMenumliststring=ppShopMenumService.listlike();
-    if(PPMenumliststring==null||PPMenumliststring.equals("")){
-        General.setCode(99);
-        General.setMsg("无数据");
+    })
+    public GeneralResult GetLoginLike() {
+        GeneralResult General = new GeneralResult();
+        List<PPMenumEntity> PPMenumliststring = new ArrayList<PPMenumEntity>();
+        PPMenumliststring = ppShopMenumService.listlike();
+        if (PPMenumliststring == null || PPMenumliststring.equals("")) {
+            General.setCode(99);
+            General.setMsg("无数据");
+            return General;
+        } else {
+            General.setData(PPMenumliststring);
+            General.setCode(00);
+            General.setMsg("Success");
+        }
         return General;
-    }else{
-        General.setData(PPMenumliststring);
-        General.setCode(00);
-        General.setMsg("Success");
     }
-    return General;
-}
 
 
 }

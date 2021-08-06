@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TableShopCarInfoMapper">
+    <resultMap
+            type="com.example.demo.bean.shopcarinfoentity" id="Student2Result">
+        <id property="shop_carinfiid" column="shop_carinfiid"/>
+        <result property="shop_carinfocoutt" column="shop_carinfocoutt"/>
+        <result property="shop_carinfomoney" column="shop_carinfomoney"/>
+        <result property="shop_carinfoname" column="shop_carinfoname"/>
+        <result property="shop_carinfourl" column="shop_carinfourl"/>
+    </resultMap>
+    <!--————————————————-->
+    <!--版权声明：本文为CSDN博主「老朱.」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
+    <!--原文链接：https://blog.csdn.net/daguanjia11/article/details/50235501-->
+
+
+    <insert id="addtableShopCarList">
+        INSERT INTO shopcarinfo (shop_carinfiid, shop_carinfocoutt, shop_carinfomoney, shop_carinfoname, shop_carinfourl)
+        VALUES (#{shopcarinfiid}, #{shopcarinfocoutt}, #{shopcarinfomoney}, #{shopcarinfoname}, #{shopcarinfourl}
+        )
+
+    </insert>
+    <select id="SelectByshopcarid" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.shopcarinfoentity">
+        SELECT
+            shop_carinfiid    AS shop_carinfiid,
+            shop_carinfocoutt AS shop_carinfocoutt,
+            shop_carinfomoney AS shop_carinfomoney,
+            shop_carinfoname  AS shop_carinfoname,
+            shop_carinfourl   AS shop_carinfourl
+        FROM shopcarinfo
+        WHERE shop_carinfiid = #{shop_carinfiid}
+
+    </select>
+
+
+    <!--查询所有  当参数全为空的时候-->
+    <select id="Selectall" parameterType="java.lang.Integer"
+            resultType="com.example.demo.bean.shopcarinfoentity">
+        SELECT *
+        FROM shopcarinfo
+        <!--<where>-->
+        <!--<if test="shop_carinfiid != null">-->
+        <!--shop_carinfiid=#{shop_carinfiid}-->
+        <!--</if>-->
+        <!--<if test="shop_carinfocoutt != null">-->
+        <!--AND shop_carinfocoutt LIKE #{shop_carinfocoutt}-->
+        <!--</if>-->
+        <!--<if test="shop_carinfomoney != null">-->
+        <!--AND shop_carinfomoney = #{shop_carinfomoney}-->
+        <!--</if>-->
+        <!--</where>-->
+
+    </select>
+
+    <!--更新sqlmytys 整合-->
+    <!--https://blog.csdn.net/daguanjia11/article/details/50235501-->
+    <update id="updatatablecarlist" parameterType="com.example.demo.bean.shopcarinfoentity">
+        update shopcarinfo
+        <set>
+            <if test="shop_carinfiid != null">shop_carinfiid=#{shopcarinfiid},</if>
+            <if test="shop_carinfocoutt != null">shop_carinfocoutt=#{shopcarinfocoutt},</if>
+            <if test="shop_carinfomoney != null">shop_carinfomoney=#{shopcarinfomoney},</if>
+            <if test="shop_carinfoname != null">shop_carinfoname=#{shopcarinfoname},</if>
+            <if test="shop_carinfourl != null">shop_carinfourl=#{shopcarinfourl},</if>
+        </set>
+        where shop_carinfiid=#{shop_carinfiid}
+    </update>
+    <!--————————————————-->
+    <!--版权声明：本文为CSDN博主「老朱.」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
+    <!--原文链接：https://blog.csdn.net/daguanjia11/article/details/50235501-->
+    <!--删除登陆人员的购物车信息  操作人，传递的购物id-->
+
+    <delete id="Delete"
+            parameterType="java.lang.Integer"
+    >
+        DELETE FROM shopcarinfo
+        WHERE shop_carinfiid = #{shop_carinfiid}
+
+    </delete>
+</mapper>
+        <!--on DUPLICATE key update userid=userid+values(userid) 多表联查-->
+        <!--select t.shop_car_id `table_shop_car.id`,t.shop_cardbyname,t.shop_cardname,t.shop_cartype,t.shop_money,s.shop_carinfocoutt-->
+        <!--from shopcarinfo s LEFT JOIN table_shop_car t on t.shop_car_id=s.shop_carinfiid-->
+        <!--————————————————-->
+        <!--版权声明：本文为CSDN博主「老朱.」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
+        <!--原文链接：https://blog.csdn.net/daguanjia11/article/details/50235501-->

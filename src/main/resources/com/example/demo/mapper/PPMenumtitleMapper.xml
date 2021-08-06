@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PpshopMenumTitleMapper">
-    <select id="getTitleMenumdata" parameterType="java.lang.String"
-            resultType="com.example.demo.bean.familybean.PPMenumEntity">
-      SELECT
-            pp_menum_texttitle,
-            pp_menum_textimage
-        FROM ppshop_menum_title WHERE pp_menum_state=('0');
-    </select>
- </mapper>
+
+
+</mapper>
 
 
 

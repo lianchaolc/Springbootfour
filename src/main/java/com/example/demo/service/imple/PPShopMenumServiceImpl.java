@@ -3,18 +3,14 @@ package com.example.demo.service.imple;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.bean.familybean.PPMenumEntity;
-import com.example.demo.bean.ppshopbean.Lay;
 import com.example.demo.bean.ppshopbean.ShopMenumbase;
 import com.example.demo.bean.ppshopbean.ShopMenunData;
-import com.example.demo.bean.ppshopmenum;
 import com.example.demo.mapper.PpshopMenumMapper;
-import com.example.demo.mapper.PpshopMenumTitleMapper;
 import com.example.demo.service.PPShopMenumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +18,6 @@ import java.util.Map;
 public class PPShopMenumServiceImpl implements PPShopMenumService {
     @Autowired
     private PpshopMenumMapper ppshopMenumMapper;
-    @Autowired
-    private PpshopMenumTitleMapper ppshopMenumTitleMapper;
 
     /***
      * 获取菜单列表

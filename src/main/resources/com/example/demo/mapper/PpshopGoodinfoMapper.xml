@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PPShopGoodInfoMapper">
+
+
+    <!--<select id="selegoodinfowh" parameterType="java.lang.String"-->
+            <!--resultType="com.example.demo.bean.PPShopGoodInfo">-->
+        <!--SELECT *-->
+        <!--FROM ppshopgoodinfo-->
+        <!--WHERE userPhone = "6631"-->
+    <!--</select>-->
+
+    <!--<select id="selegoodinfobase" parameterType="java.lang.String"-->
+            <!--resultType="com.example.demo.bean.PPShopGoodInfoBase">-->
+        <!--SELECT *-->
+        <!--FROM ppshopgoodinfonobase-->
+        <!--WHERE PuserPhone = "6631" ORDER BY  PPShopGoodInfonoData DESC-->
+    <!--</select>-->
+    <select id="selegoodinfobase" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.goodinfolinebean.PPShopGoodInfoResutl">
+    select * from ppshopgoodinfo,ppshopgoodinfonobase where  ppshopgoodinfo.userPhone=
+    ppshopgoodinfonobase.PuserPhone and ppshopgoodinfonobase.PuserPhone="6631"
+    </select>
+
+
+</mapper>
+        <!--on DUPLICATE key update userid=userid+values(userid) -->

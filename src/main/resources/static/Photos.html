@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>图片水印</title>
+</head>
+<body>
+<div class="container">
+    <div class="ready_info2 clear" style="padding:3% 6%;box-sizing: border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">
+        <i></i><span>为了维护您的权益，请在签署前仔细阅读本授权书中的各项条款</span>
+    </div>
+    <div class="shouquan_bd">
+        <p>本人知晓并同意平安普惠依据《征信业管理条例》及相关法律法规，向第三方征信机构提交本人在此笔借贷业务中产生的相关信息，包括但不限于个人基本信息、借款申请信息、借款合同信息以及还款行为信息，并记录在征信机构的个人信用信息数据库中。</p>
+        <div class="text_url">
+            <a href="javascript:void(0)" class="color3">《综合授权书》</a>
+            <a href="javascript:void(0)" class="color3">《平安易贷险协议》</a>
+        </div>
+        <div class="shouquan_f">
+            <div class="qian_name">
+                <label>客户签名：</label><i class="qm" id="qian-input"></i>
+                <img id='img' alt='' class="qmwc"/>
+            </div>
+            <div class="qian_nametimes">
+                <label>日期：</label>
+                <span>2015-12-15</span>
+            </div>
+        </div>
+    </div>
+    <div class="sq_f">
+        <img src="images/sq_f.png" width="100%">
+    </div>
+    <!-- 签名 -->
+    <div class="qianmingPage" id='qianmingPage'>
+        <canvas id="myCanvas"></canvas>
+        <div class="btnWrapper">
+            <button id="cancel" ><img src="images/btnCancel.png" ></button>
+            <button id="clear"><img src="images/btnClear.png"></button>
+            <button id="save"><img src="images/btnSure.png"></button>
+
+        </div>
+    </div>
+
+    <!--  -->
+    <div class="but_botton" id="but_botton"><input type="button" value="授权并签名" class="mybutton btn_commom_bg" id="btnNextOVR"></div>
+
+</div>
+<div class="bottom_remind" id="bottom_remind" ><img src="images/bottom.png" ></div>
+<!-- <div class=""></div> -->
+<script type="text/javascript">
+    window.onload = function(){
+        var oInput = document.getElementById("qian-input");
+        // var btnNextOVR = document.getElementById("btnNextOVR");
+        var oQian = document.getElementById("qianmingPage");
+        var but_botton = document.getElementById("but_botton");
+        var bottom_remind = document.getElementById("bottom_remind");
+        var oQmwc = document.getElementById("img");
+        var oSave=document.getElementById("save");
+        var oCancel=document.getElementById("cancel");
+        var oClear=document.getElementById("clear");
+        but_botton.οnclick=function(){
+            oQian.style.display="block";
+            oQmwc.style.display="block";
+            but_botton.style.display="none";
+            oInput.style.display="none";
+            bottom_remind.style.display="none";
+        };
+
+        oSave.οnclick=function(){
+            //base64
+            var dataUrl = canvas.toDataURL();
+            img.src = dataUrl;
+            oQian.style.display="none";
+            but_botton.style.display="block";
+            bottom_remind.style.display="block";
+            location.href = "holding.html";
+        }
+
+        oCancel.οnclick=function(){
+            oQian.style.display="none";
+            oQmwc.style.display="none";
+            oInput.style.display="block";
+            but_botton.style.display="block";
+            bottom_remind.style.display="block";
+        };
+
+        oClear.οnclick=function(){
+            board.clearRect(0,0,canvas.width,canvas.height);
+        };
+
+        // qianming
+        var canvas,board,img;
+        canvas = document.getElementById('myCanvas');
+        img= document.getElementById('img');
+
+        canvas.height = 400;
+        canvas.width = 640;
+
+        board = canvas.getContext('2d');
+
+        var mousePress = false;
+        var last = null;
+
+        function beginDraw(){
+            mousePress = true;
+        }
+
+        function drawing(event){
+            event.preventDefault();
+            if(!mousePress)return;
+            var xy = pos(event);
+            if(last!=null){
+                board.beginPath();
+                board.moveTo(last.x,last.y);
+                board.lineTo(xy.x,xy.y);
+                board.stroke();
+            }
+            last = xy;
+        }
+
+        function endDraw(event){
+            mousePress = false;
+            event.preventDefault();
+            last = null;
+        }
+
+        function pos(event){
+            var x,y;
+            if(isTouch(event)){
+                x = event.touches[0].pageX;
+                y = event.touches[0].pageY;
+            }else{
+                x = event.offsetX-event.target.offsetLeft;
+                y = event.offsetY-event.target.offsetTop;
+            }
+            console.log('x='+x+' y='+y);
+            return {x:x,y:y};
+        }
+
+        function isTouch(event){
+            var type = event.type;
+            if(type.indexOf('touch')>=0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        board.lineWidth = 3;
+        board.strokeStyle="#000";
+        canvas.onmousedown = beginDraw;
+        canvas.onmousemove = drawing;
+        canvas.onmouseup = endDraw;
+        canvas.addEventListener('touchstart',beginDraw,false);
+        canvas.addEventListener('touchmove',drawing,false);
+        canvas.addEventListener('touchend',endDraw,false);
+
+
+
+    };
+
+</script>
+</body>
+</html>
+
+<!--https://blog.csdn.net/baidu_31345523/article/details/50770966-->
+.shouquan_bd{width:90%;margin:0 auto;height:auto;background:url(../images/sq.png) no-repeat;background-size:100%;padding:20% 6% 1%;box-sizing: border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;position:relative;}
+.shouquan_bd p{text-indent:2em;text-align:justify;line-height:20px;}
+.color3{color:#1ba5ea;}
+.text_url{margin-bottom:40%;}
+.text_url a{margin-top:4%;display:block;}
+.shouquan_f{position:absolute;bottom:8%;right:4%;}
+.qian_name{height:32px;position:relative}
+.qian_nametimes label{width:70px;display:inline-block;font-size:14px;color:#303030;}
+.qian_nametimes span{width:80px;display:inline-block;font-size:14px;color:#303030;}
+.qian_nametimes label{text-align:right;}
+.sq_f{width:90%;margin:0 auto;}
+.qian_name .qm{height:32px;width:70px;display:block;position:absolute;right:0;top:-12px;}
+.ready_info2 i{width:15px;height:18px;background:url(../images/icon_02.png) no-repeat left 3px;float:left;background-size:100%;margin-right:6px;}
+.ready_info2 span{float:left;width:90%;margin-top:3px;font-size:12p
+<!--————————————————-->
+<!--版权声明：本文为CSDN博主「top慢慢」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
+<!--原文链接：https://blog.csdn.net/baidu_31345523/java/article/details/50770966-->

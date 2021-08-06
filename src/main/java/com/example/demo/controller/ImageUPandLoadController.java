@@ -3,6 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.domain.FileUtils;
 import com.example.demo.global.domain.result.Result;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
@@ -74,6 +77,11 @@ public class ImageUPandLoadController {
  * ScheduledExecutorService
  */
     @PostMapping("/tasktime")
+    @ApiOperation(value = "开启定时任务的代码")
+//    @ApiResponses({
+//            @ApiResponse(code = 400, message = "请求参数没填好"),
+//            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+//    })
     public void tasktime() {
 
             ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ShopCarMapper">
+    <insert id="addtableShopCarList"
+    >
+        INSERT INTO shopcarinfo (shop_carinfiid, shop_carinfocoutt, shop_carinfomoney, shop_carinfoname, shop_carinfourl)
+        VALUES (#{shop_carinfiid}, #{shop_carinfocoutt}, #{shop_carinfomoney}, #{shop_carinfoname}, #{shop_carinfourl}
+      )
+
+
+    </insert>
+    <!--{shop_carinfiid},-->
+    <!--#{shop_carinfocoutt},-->
+    <!--#{shop_carinfomoney},-->
+    <!--#{shop_carinfoname},-->
+    <!--#{shop_carinfourl}-->
+
+    <!--<select id="selectall" parameterType="java.lang.String"-->
+    <!--resultType="com.example.demo.bean.User">-->
+    <!--SELECT * FROM  userinforbyweb-->
+    <!--</select>-->
+    <!--&lt;!&ndash;通过姓名进行删除&ndash;&gt;-->
+    <!--<delete id="deleteuserbyname" parameterType="java.lang.String">-->
+    <!--DELETE  FROM userinforbyweb WHERE username =#{username}-->
+    <!--</delete>-->
+    <!--&lt;!&ndash;查询单条通过用户的&ndash;&gt;-->
+    <!--<select id="selectbyid"  parameterType="java.lang.String" resultType="com.example.demo.bean.User">-->
+    <!--SELECT * FROM userinforbyweb WHERE username=#{username}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;更新数据源&ndash;&gt;-->
+    <!--<update id="update" parameterType="java.lang.String">-->
+    <!--UPDATE   userinforbyweb SET usertel=#{user.usertel},usertest=#{user.usertest},usertype=#{user.usertype} WHERE username=#{user.username}-->
+    <!--</update>-->
+
+    <!--&lt;!&ndash;分页sql&ndash;&gt;-->
+    <!--<select id="selectType" parameterType="java.lang.String"-->
+    <!--resultType="com.example.demo.bean.User">-->
+    <!--SELECT * FROM  userinforbyweb ORDER BY  userid asc-->
+    <!--</select>-->
+
+
+</mapper>
+        <!--on DUPLICATE key update userid=userid+values(userid) -->

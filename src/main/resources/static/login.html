@@ -125,29 +125,62 @@
         console.log("查询所有");
         $.ajax({
             url: "/selectall",
-            type: "POST",
-            dataType: "json",
-            data: {},
+            type: 'GET',
             dataType: "json",
             success: function (res) {
-                console.log("！！！！！查询所有" + res.toString());
-
-                // var    gson=new Gson();
-                // var  user=new User();
-                // var   list=         gson.from(res,user);
-
-                for (var i = 0; i < res.length; i++) {
-                    console.log("！！！！！查询所有" + res[i].username + res[i].usertel);
-                    res[i].username
-                    res[i].usertel
-                }
-                var str = "";//定义用于拼接的字符串
-                for (var i = 0; i < res.length; i++) {
+                console.log(res.msg);
+                $.each(res.data,function(index,item){
+                    console.log("jin");
+                    console.log(item.usertest);
+                    console.log(item.usertel);
+                    console.log(item.usertype);
+                    console.log(item.username);
                     var x = document.getElementById('tb').insertRow();
-                    // for (var j = 0; j < res[i].length; j++) {
+                    var x1 = document.getElementById('tb').insertRow();
                     var cell = x.insertCell();
-                    cell.innerHTML = res[i];
-                }
+                    var cell1 = x1.insertCell();
+                    cell.innerHTML = item.usertest;
+                    cell1.innerHTML = item.usertel;
+                    cell.innerHTML = item.usertype;
+                    cell.innerHTML = item.username;
+                });
+
+
+                // 动态添加表行的javascript函数如下：
+
+
+// function addRow(){
+// //添加一行
+//
+//     var newTr = testTbl.insertRow();
+//
+// //添加两列
+//
+//     var newTd0 = newTr.insertCell();
+//
+//     var newTd1 = newTr.insertCell();
+//
+// //设置列内容和属性
+//
+//     newTd0.innerHTML = '<input type=checkbox id="box4">';
+//
+//     newTd2.innerText= '新加行';
+//
+// }
+                // for (var i = 0; i <item .length; i++) {
+                //     // console.log("！！！！！查询所有的条目" + res[i].username + res[i].usertel);
+                //     console.log("！！！！！查询所有的条目子条目" + item[i].username);
+                //     item[i].username
+                // }
+                // var str = "";//定义用于拼接的字符串
+                // for (var i = 0; i < item.length; i++) {
+                //     var x = document.getElementById('tb').insertRow();
+                //     var cell = x.insertCell();
+                //     cell.innerHTML = item[i].usertest;
+                //     cell.innerHTML = item[i].usertel;
+                //     cell.innerHTML = item[i].usertype;
+                //     cell.innerHTML = item[i].username;
+                // }
             }
             // }
         }).done().fail(function () {

@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+/***
+ * Response{protocol=http/1.1, code=404, message=, url=http://192.168.1.167:8988/loginaction?username=1&userpassword=1}
+ */
 
 @Service
 public class PpShopLoginServiceImpl implements PpshopLoginService {
@@ -25,11 +28,24 @@ public class PpShopLoginServiceImpl implements PpshopLoginService {
     @Transactional//  事物注解
     public p_shopEntity login1(p_shopEntity p_shopEntity) {
         System.out.println(p_shopEntity.getUsername() + "::::::" + p_shopEntity.getUserpassword());
-        p_shopEntity listps1 = PpshopLoginMapper.login(p_shopEntity);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + listps1);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + listps1.getUserstate() + listps1.getUserphone());
-        String token = UUID.randomUUID().toString();
-        return listps1;
+
+        if (null == p_shopEntity) {
+            System.out.println("null");
+            return null;
+        } else {
+            p_shopEntity listps1 = PpshopLoginMapper.login(p_shopEntity);
+            if (null == listps1 || listps1.equals("")) {
+                return null;
+            } else {
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + listps1);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!" + listps1.getUserstate() + listps1.getUserphone());
+                String token = UUID.randomUUID().toString();
+                return listps1;
+            }
+
+
+        }
+
     }
 
 

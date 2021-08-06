@@ -3,14 +3,18 @@
 <mapper namespace="com.example.demo.mapper.FamilyMapper">
     <select id="Getfamilybean" parameterType="java.lang.String"
             resultType="com.example.demo.bean.ppshopbean.ppshopfamilybean">
-        SELECT * FROM family_table WHERE  cardid=name AND name=cardid;
+        SELECT *
+        FROM family_table
+        WHERE cardid = name AND name = cardid;
     </select>
 
 
     <select id="page" parameterType="java.lang.String" resultType="com.example.demo.bean.ppshopbean.ppshopfamilybean">
-        select *
-        from family_table  order by cardid asc
+        SELECT *
+        FROM family_table
+        ORDER BY cardid ASC
     </select>
+    
 
 </mapper>
 

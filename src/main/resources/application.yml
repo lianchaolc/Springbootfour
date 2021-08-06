@@ -10,8 +10,15 @@
 #spring:
 # profiles: dev
 #---
-#server:
+#server
 # port: 8883
 # spring:
 #  profiles:  prod
 #---
+spring:
+  jackson:
+    default-property-inclusion: non_null
+#/// 驼峰命名
+    mybatis:
+      configuration:
+        map-underscore-to-camel-case: true

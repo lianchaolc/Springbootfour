@@ -77,8 +77,12 @@ public class PpUserLoginController {
             GeneralResult.setData(pShopUserresult);
             return GeneralResult;
 
+        }else{
+            GeneralResult.setCode(99);
+            GeneralResult.setMsg("Failed");
+            GeneralResult.setData(null);
+            return GeneralResult;
         }
-        return GeneralResult;
     }
 
 

@@ -21,15 +21,14 @@
         FROM ppshop_menudatalist;
     </select>
 
-
-
     <select id="getMenum" parameterType="java.lang.String"
             resultType="com.example.demo.bean.familybean.PPMenumEntity">
         SELECT
-        pp_menum_texttitle,
-        pp_menum_textimage,
-        pp_menum_state
-        FROM ppshop_menum_title WHERE pp_menum_state=#{strType};
+            pp_menum_texttitle,
+            pp_menum_textimage,
+            pp_menum_state
+        FROM ppshop_menum_title
+        WHERE pp_menum_state = #{strType};
     </select>
 
     <!--获取数据-->

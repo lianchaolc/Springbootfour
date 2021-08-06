@@ -6,6 +6,8 @@ import com.example.demo.service.PpshopMenumTitleService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,29 +22,27 @@ import java.util.List;
  */
 @RestController
 public class PPShopMenumTitleDataController {
-
+    private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PpshopMenumTitleService ppshopMenumTitleService;
+
     /***
      *返回菜单页面的顶部数据
      */
-    @ApiOperation(value = "获取菜单顶部的数据  0或者3")
+    @ApiOperation(value = "获取菜单顶部的数据  0或者1,3")
     @RequestMapping(value = "getTitleMenumdata", method = RequestMethod.GET)
     @ResponseBody
-    @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "String"),
-    })
-    public GeneralResult getTitleMenumdata(String  data){
-        data="1";
+    public GeneralResult getTitleMenumdata(String type) {
         GeneralResult General = new GeneralResult();
-        List<PPMenumEntity>  titlemenu=new ArrayList<PPMenumEntity>();
-        if (titlemenu.equals("")||titlemenu==null){
-            System.out.print("null"+titlemenu);
+        List<PPMenumEntity> titlemenu = new ArrayList<PPMenumEntity>();
+        if (type.equals("") || type == null) {
+            System.out.print("null" + titlemenu);
             return General;
-        }else{
-            titlemenu= ppshopMenumTitleService.getTitleMenumdata(data);
+        } else {
+            log.info("PPShopMenumTitleDataController" + type);
+            titlemenu = ppshopMenumTitleService.getTitleMenumdata(type);
             General.setData(titlemenu);
-            General.setMsg("返回成功");
+            General.setMsg("Success");
             General.setCode(200);
         }
         return General;
