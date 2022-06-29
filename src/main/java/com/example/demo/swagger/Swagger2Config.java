@@ -43,7 +43,6 @@ public class Swagger2Config {
 ////    原文：https://blog.csdn.net/qq_35193093/article/details/80075043
 ////    版权声明：本文为博主原创文章，转载请附上博
 //    网络请求的url
-////    http://localhost:8888/swagger-ui.html
 
 //     http://localhost:8988/swagger-ui.html
 }

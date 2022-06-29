@@ -41,10 +41,10 @@
 		</style>
 	</head>
 
-	<body>
-		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+	<>
+		< class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
 			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Company name</a>
-			<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+		<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 			<ul class="navbar-nav px-3">
 				<li class="nav-item text-nowrap">
 					<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Sign out</a>
@@ -63,7 +63,7 @@
 										<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
 										<polyline points="9 22 9 12 15 12 15 22"></polyline>
 									</svg>
-									Dashboard <span class="sr-only">(current)</span>
+									首页 <span class="sr-only">(current)</span>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -72,7 +72,7 @@
 										<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
 										<polyline points="13 2 13 9 20 9"></polyline>
 									</svg>
-									Orders
+									数据表格
 								</a>
 							</li>
 							<li class="nav-item">
@@ -251,7 +251,43 @@
 				}
 			});
 		</script>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<!--相对路径-->
+		<script type="text/javascript" src="../js/jquery-1.9.1.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
 
+		<script>
+            // 此处方法模拟打印随机后端数据,打印的结构见上面,加载数据内容打印
+            function randomData() {
+                var startId = ~~(Math.random() * 100)
+                var rows = []
+                for (var i = 0; i < 10; i++) {
+                    rows.push({
+                        id: startId + i,
+                        name: 'test' + (startId + i),
+                        price: '$' + (startId + i),
+                        price1: '$' + (startId + i),
+                        price2: '$' + (startId + i),
+                        price3: '$' + (startId + i)
+                    })
+                }
+                console.log(rows)
+                return rows;
+            }
+
+
+            $(function() {
+                // 核心内容,bootstrapTable自带方法,将randomdata中的数据加载如表格中,数据中的key值需要与写死在表头中的data-field一一对应
+                $('#table').bootstrapTable('append',randomData())
+                // 下面一行代码是在表格中增加样式,让所有内容居中
+                $("td,th").addClass("text-center");
+            })
+		</script>
+
+		<!--————————————————-->
+		<!--版权声明：本文为CSDN博主「JARED布里姐」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
+		<!--原文链接：https://blog.csdn.net/Maryshaw/article/details/86927335-->
 	</body>
 
 </html>

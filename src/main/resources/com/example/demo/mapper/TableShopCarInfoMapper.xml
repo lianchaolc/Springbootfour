@@ -58,13 +58,13 @@
     <update id="updatatablecarlist" parameterType="com.example.demo.bean.shopcarinfoentity">
         update shopcarinfo
         <set>
-            <if test="shop_carinfiid != null">shop_carinfiid=#{shopcarinfiid},</if>
-            <if test="shop_carinfocoutt != null">shop_carinfocoutt=#{shopcarinfocoutt},</if>
-            <if test="shop_carinfomoney != null">shop_carinfomoney=#{shopcarinfomoney},</if>
-            <if test="shop_carinfoname != null">shop_carinfoname=#{shopcarinfoname},</if>
-            <if test="shop_carinfourl != null">shop_carinfourl=#{shopcarinfourl},</if>
+
+            shop_carinfocoutt=#{shopcarinfocoutt},
+            shop_carinfomoney=#{shopcarinfomoney},
+            shop_carinfoname=#{shopcarinfoname},
+            shop_carinfourl=#{shopcarinfourl}
         </set>
-        where shop_carinfiid=#{shop_carinfiid}
+        where shop_carinfiid=#{shopcarinfiid}
     </update>
     <!--————————————————-->
     <!--版权声明：本文为CSDN博主「老朱.」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->

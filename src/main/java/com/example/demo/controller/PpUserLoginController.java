@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 //import com.example.demo.bean.PShopUser;
+
 import com.example.demo.bean.familybean.p_shopEntity;
 import com.example.demo.domain.GeneralResult;
 import com.example.demo.domain.Result;
@@ -35,16 +36,16 @@ public class PpUserLoginController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PpshopLoginService ppshopLoginService;
+
     /****
      *通过用户名   和密码 返回所有数据
      * @param username
      * @param userpassword
      * @return
      */
-    @ResponseBody
-    @ApiOperation(value = "登陆请求页面")
     @RequestMapping(value = "/pplogin", method = RequestMethod.PUT)
-    public GeneralResult getlogin(String username,String userpassword) {
+
+    public GeneralResult getlogin(String username, String userpassword) {
         GeneralResult GeneralResult = new GeneralResult();
         log.info("username!!!!!!", "" + username);
         log.info("userpassword!!!!!!", "" + userpassword);
@@ -71,13 +72,13 @@ public class PpUserLoginController {
             pShopUserresult.setCarid(listlogin.getCarid());
             System.out.println("IIIIIIIIIIIIIIIIIIIIII----" + pShopUserresult.getUsername());
             System.out.println("IIIIIIIIIIIIIIIIIIIIII-----" + pShopUserresult.getUserpassword());
-            log.info( "---------" + pShopUserresult.getUsername() + "!!!" + pShopUserresult.getUsername());
+            log.info("---------" + pShopUserresult.getUsername() + "!!!" + pShopUserresult.getUsername());
             GeneralResult.setCode(00);
             GeneralResult.setMsg("Success");
             GeneralResult.setData(pShopUserresult);
             return GeneralResult;
 
-        }else{
+        } else {
             GeneralResult.setCode(99);
             GeneralResult.setMsg("Failed");
             GeneralResult.setData(null);
@@ -85,6 +86,60 @@ public class PpUserLoginController {
         }
     }
 
+    @ResponseBody
+    @ApiOperation(value = "登陆请求页面")
+//    @RequestMapping(value = "/pplogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/pploginbyhtml", method = {RequestMethod.GET, RequestMethod.PUT})
+
+    public GeneralResult pploginbyhtml(String username, String password) {
+        GeneralResult GeneralResult = new GeneralResult();
+        log.info("username!!!!!!", "" + username);
+        log.info("userpassword!!!!!!", "" + password);
+
+        if (null == username || username.equals("")) {
+            return GeneralResult.setMsg("username");
+
+        }
+        if (null == password || password.equals("")) {
+            return GeneralResult.setMsg("userpassword");
+        }
+//    商城的登陆返回数据传入参数的校验判断
+        System.out.println("XXXXXXXusername==userpassword==" + username + password);
+        p_shopEntity pShopUser = new p_shopEntity();
+        pShopUser.setUsername(username);
+        pShopUser.setUserpassword(password);
+        p_shopEntity listlogin = ppshopLoginService.login1(pShopUser);//   返回字符串jie'guo
+        if (null != listlogin || "null".equals(listlogin)) {
+            p_shopEntity pShopUserresult = new p_shopEntity();
+            pShopUserresult.setUserstate(listlogin.getUserstate());
+            pShopUserresult.setUserphone(listlogin.getUserphone());
+            pShopUserresult.setUsername(listlogin.getUsername());
+            pShopUserresult.setUserpw(listlogin.getUserpw());
+            pShopUserresult.setUserpassword(listlogin.getUserpassword());
+            pShopUserresult.setCarid(listlogin.getCarid());
+            System.out.println("IIIIIIIIIIIIIIIIIIIIII----" + pShopUserresult.getUsername());
+            System.out.println("IIIIIIIIIIIIIIIIIIIIII-----" + pShopUserresult.getUserpassword());
+            log.info("---------" + pShopUserresult.getUsername() + "!!!" + pShopUserresult.getUsername());
+            GeneralResult.setCode(00);
+            GeneralResult.setMsg("Success");
+            GeneralResult.setData(pShopUserresult);
+            return GeneralResult;
+
+        } else {
+            log.info("----99-----");
+            GeneralResult.setCode(99);
+            GeneralResult.setMsg("Failed");
+            GeneralResult.setData("登陆失败了");
+            return GeneralResult;
+        }
+    }
+
+
+    @RequestMapping("/redirectLogin")
+    public String redirectLogin() {
+        System.out.println("login跳转");
+        return "/pploginbyhtml";
+    }
 
     /***
      *
@@ -124,7 +179,7 @@ public class PpUserLoginController {
     public Result updatareginuser(String username, String userpassword,
                                   String userpw, String userphoen, String userstate) {
         System.out.print("II" + username + ":::" + userpassword + userpw + userphoen + userstate);
-        System.out.print("II！！！！！！！！！！！" + username + ":::" + userpassword );
+        System.out.print("II！！！！！！！！！！！" + username + ":::" + userpassword);
 
 
         if (username.equals("") || username == null) {
@@ -158,9 +213,6 @@ public class PpUserLoginController {
 //    }
         return null;
     }
-
-
-
 
 
 }
