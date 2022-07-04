@@ -18,9 +18,8 @@
     <!--</select>-->
     <select id="selegoodinfobase" parameterType="java.lang.String"
             resultType="com.example.demo.bean.goodinfolinebean.PPShopGoodInfoResutl">
-    select * from ppshopgoodinfo,ppshopgoodinfonobase where  ppshopgoodinfo.userPhone=
-    ppshopgoodinfonobase.PuserPhone and ppshopgoodinfonobase.PuserPhone="6631"
-    </select>
+
+        select * from ppshopgoodinfo,ppshopgoodinfonobase where ppshopgoodinfo.userPhone= ppshopgoodinfonobase.PuserPhone and ppshopgoodinfonobase.PuserPhone=#{PuserPhone}  </select>
 
 
 </mapper>
