@@ -33,7 +33,7 @@ public class PpshopgoodInfoController {
     public PPShopGoodInfoService servicegoodinfo;
 
     @ApiOperation(value = "通过电话好查询数据")
-    @RequestMapping(value = "/selectLIneInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/selectLIneInfo", method = {RequestMethod.GET, RequestMethod.PUT})
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userphone", value = "电话", required = true, paramType = "query", dataType = "String")
     })
@@ -41,9 +41,11 @@ public class PpshopgoodInfoController {
             @ApiResponse(code = 400, message = "请求参数没填好"),
             @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
     })
+
     public GeneralResult selectLIneInfo(String userphone) {
         com.example.demo.domain.GeneralResult GeneralResult = new com.example.demo.domain.GeneralResult();
         servicegoodinfo.select(userphone);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+userphone);
 //        testGoodService.select(userphone);
         List<PPShopGoodInfoResutl> select = servicegoodinfo.select(userphone);
 

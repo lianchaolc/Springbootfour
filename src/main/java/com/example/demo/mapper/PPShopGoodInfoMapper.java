@@ -15,5 +15,5 @@ public interface PPShopGoodInfoMapper {
 //     public  List<PPShopGoodInfoBase> selegoodinfobase(String Userphone);
 
      public  List<PPShopGoodInfoResutl>  selegoodinfobase(String Userphone);
-
+     public  List<PPShopGoodInfoResutl>  selegoodinfobaseall();
 }

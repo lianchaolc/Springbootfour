@@ -60,11 +60,15 @@
                 console.log("！！！！！" + res.code)
                 console.log("！！！！！" +res.data.message)
                 console.log("！！！！！" + JSON.stringify(res))
-
-
+                console.log("！！！！！" + JSON.stringify(res).valueOf())
+               var str_pretty1 = JSON.stringify(res)
+                console.log("AAAAA" + JSON.parse(str_pretty1).data)
+                var titledata=JSON.parse(str_pretty1).data;
                 if (res.code === 0) {
                     console.log("！res" + res)
                     window.location.href = '/dashboard.html';
+                }else if(res.code ===99){
+                    alert(titledata)
                 }
             }
 

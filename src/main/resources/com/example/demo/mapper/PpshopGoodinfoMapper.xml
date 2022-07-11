@@ -4,22 +4,31 @@
 
 
     <!--<select id="selegoodinfowh" parameterType="java.lang.String"-->
-            <!--resultType="com.example.demo.bean.PPShopGoodInfo">-->
-        <!--SELECT *-->
-        <!--FROM ppshopgoodinfo-->
-        <!--WHERE userPhone = "6631"-->
+    <!--resultType="com.example.demo.bean.PPShopGoodInfo">-->
+    <!--SELECT *-->
+    <!--FROM ppshopgoodinfo-->
+    <!--WHERE userPhone = "6631"-->
     <!--</select>-->
 
     <!--<select id="selegoodinfobase" parameterType="java.lang.String"-->
-            <!--resultType="com.example.demo.bean.PPShopGoodInfoBase">-->
-        <!--SELECT *-->
-        <!--FROM ppshopgoodinfonobase-->
-        <!--WHERE PuserPhone = "6631" ORDER BY  PPShopGoodInfonoData DESC-->
+    <!--resultType="com.example.demo.bean.PPShopGoodInfoBase">-->
+    <!--SELECT *-->
+    <!--FROM ppshopgoodinfonobase-->
+    <!--WHERE PuserPhone = "6631" ORDER BY  PPShopGoodInfonoData DESC-->
     <!--</select>-->
     <select id="selegoodinfobase" parameterType="java.lang.String"
             resultType="com.example.demo.bean.goodinfolinebean.PPShopGoodInfoResutl">
 
-        select * from ppshopgoodinfo,ppshopgoodinfonobase where ppshopgoodinfo.userPhone= ppshopgoodinfonobase.PuserPhone and ppshopgoodinfonobase.PuserPhone=#{PuserPhone}  </select>
+        SELECT *
+        FROM ppshopgoodinfo, ppshopgoodinfonobase
+        WHERE ppshopgoodinfo.userPhone = ppshopgoodinfonobase.PuserPhone AND
+              ppshopgoodinfonobase.PuserPhone = #{PuserPhone}  </select>
+    <select id="selegoodinfobaseall" parameterType="java.lang.String"
+            resultType="com.example.demo.bean.goodinfolinebean.PPShopGoodInfoResutl">
+
+        SELECT *
+        FROM ppshopgoodinfo, ppshopgoodinfonobase
+        ORDER BY PPShopGoodInfonoData DESC </select>
 
 
 </mapper>

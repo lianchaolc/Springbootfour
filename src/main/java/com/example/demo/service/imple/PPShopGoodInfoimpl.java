@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class PPShopGoodInfoimpl implements PPShopGoodInfoService {
     @Autowired
-    public  PPShopGoodInfoMapper ppShopGoodInfoMapper;
+    public PPShopGoodInfoMapper ppShopGoodInfoMapper;
 
 //    @Override
 //    public PPShopGoodInfo selegoodinfowhere(String Userphone) {
@@ -35,17 +35,25 @@ public class PPShopGoodInfoimpl implements PPShopGoodInfoService {
      */
     @Override
     public List<PPShopGoodInfoResutl> select(String userphone) {
-        List<PPShopGoodInfo>   infolist=new ArrayList<PPShopGoodInfo>();
-        List<PPShopGoodInfoBase>   infolistbase=new ArrayList<PPShopGoodInfoBase>();
-        List<PPShopGoodInfoResutl>  PPShopGoodInfoResutllist=new ArrayList<PPShopGoodInfoResutl>();
+        List<PPShopGoodInfo> infolist = new ArrayList<PPShopGoodInfo>();
+        List<PPShopGoodInfoBase> infolistbase = new ArrayList<PPShopGoodInfoBase>();
+        List<PPShopGoodInfoResutl> PPShopGoodInfoResutllist = new ArrayList<PPShopGoodInfoResutl>();
 //        infolist = ppShopGoodInfoMapper.selegoodinfowh(userphone);
 
 //        System.out.print("数据打印:" + infolist.size());
 
-//        infolistbase=    ppShopGoodInfoMapper.selegoodinfobase(userphone) ;
-        PPShopGoodInfoResutllist=   ppShopGoodInfoMapper.selegoodinfobase(userphone) ;
-        System.out.print("数据打印长度::::" +PPShopGoodInfoResutllist.size());
+//        infolistbase=    ppShopGoodInfoMapper.selegoodinfobase(userphone)
 
+//        不传d递参数查询所有
+        if (null == userphone || userphone.equals("")) {
+            System.out.print("" + userphone);
+            PPShopGoodInfoResutllist = ppShopGoodInfoMapper.selegoodinfobaseall();
+        } else {
+
+
+            PPShopGoodInfoResutllist = ppShopGoodInfoMapper.selegoodinfobase(userphone);
+            System.out.print("数据打印长度::::" + PPShopGoodInfoResutllist.size());
+        }
         return PPShopGoodInfoResutllist;
     }
 }

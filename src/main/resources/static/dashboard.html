@@ -41,10 +41,11 @@
 		</style>
 	</head>
 
-	<>
-		< class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+	<body>
+		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
 			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Company name</a>
-		<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+		<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"id="inputinfo" ></input>
+		<button   style="background-color: #00F7DE"class="navbar-nav px-3 w-25" class="btn btn-primary" data-loading-text="Loading..."onclick="searchinfo()">搜索</button>
 			<ul class="navbar-nav px-3">
 				<li class="nav-item text-nowrap">
 					<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Sign out</a>
@@ -67,12 +68,12 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+								<a class="nav-link" href="list.html#">
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
 										<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
 										<polyline points="13 2 13 9 20 9"></polyline>
 									</svg>
-									数据表格
+									图表
 								</a>
 							</li>
 							<li class="nav-item">
@@ -276,18 +277,37 @@
                 return rows;
             }
 
-
             $(function() {
                 // 核心内容,bootstrapTable自带方法,将randomdata中的数据加载如表格中,数据中的key值需要与写死在表头中的data-field一一对应
                 $('#table').bootstrapTable('append',randomData())
                 // 下面一行代码是在表格中增加样式,让所有内容居中
                 $("td,th").addClass("text-center");
             })
+
+
+		// <!-- 1搜素内容-->
+
+                function  searchinfo(){
+            console.log("正在查找内容为"+ document.getElementById("inputinfo").value)
+            $.ajax({
+                url: "/selectLIneInfo",
+                type: "PUT",
+                datatype: "json",
+                data: {
+                    "searchinfo": document.getElementById("inputinfo").value,
+                },
+                success: function (res) {
+                    console.log("！！！！！打印数据" + JSON.stringify(res).valueOf())
+                }
+
+            }).done.fail(function () {
+                alert('请查看数据失败')
+
+            })
+
+		}
 		</script>
 
-		<!--————————————————-->
-		<!--版权声明：本文为CSDN博主「JARED布里姐」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
-		<!--原文链接：https://blog.csdn.net/Maryshaw/article/details/86927335-->
 	</body>
 
 </html>
