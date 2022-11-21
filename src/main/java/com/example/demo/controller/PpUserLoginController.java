@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /****
  * pp
  * 商成的用户登陆 对移动端或者是PC端 用户提交数据进行验证
@@ -215,4 +218,12 @@ public class PpUserLoginController {
     }
 
 
+    /***
+     * 登出操作
+     */
+
+    @GetMapping("loginout")
+    public String loginout() {
+        return "logout";
+    }
 }
