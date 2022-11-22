@@ -53,6 +53,15 @@
 
     </select>
 
+    <!--查询所有  当参数全为空的时候-->
+    <select id="Selectabyid" parameterType="java.lang.Integer"
+            resultType="com.example.demo.bean.shopcarinfoentity">
+        SELECT *
+        FROM shopcarinfo
+        WHERE shop_carinfiid= #{shopcarinfiid}
+    </select>
+
+
     <!--更新sqlmytys 整合-->
     <!--https://blog.csdn.net/daguanjia11/article/details/50235501-->
     <update id="updatatablecarlist" parameterType="com.example.demo.bean.shopcarinfoentity">
