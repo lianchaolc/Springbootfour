@@ -17,6 +17,7 @@ public interface TableShopCarInfoMapper {
 
     //    @Select("SELECT * FROM shopcarinfo")
     List<shopcarinfoentity> Selectall();
+    List<shopcarinfoentity> Selectabyid(int shopcarinfo);
 //    @Select("SELECT * FROM shopcarinfo where shop_carinfiid=12")
 //    TableShopCar SelectByshopcarinf3();
 

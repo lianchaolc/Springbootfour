@@ -45,7 +45,7 @@ public class PpshopgoodInfoController {
     public GeneralResult selectLIneInfo(String userphone) {
         com.example.demo.domain.GeneralResult GeneralResult = new com.example.demo.domain.GeneralResult();
         servicegoodinfo.select(userphone);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+userphone);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!===userphone"+userphone);
 //        testGoodService.select(userphone);
         List<PPShopGoodInfoResutl> select = servicegoodinfo.select(userphone);
 

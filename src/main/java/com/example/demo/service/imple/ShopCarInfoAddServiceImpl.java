@@ -28,8 +28,6 @@ public class ShopCarInfoAddServiceImpl implements ShopCarInfoAddService {
 
     @Autowired
     private RedisService redisService;
-//    @Autowired
-//    private  ProductInfoDao productInfoDao;
 
 
     @Override
@@ -55,9 +53,10 @@ public class ShopCarInfoAddServiceImpl implements ShopCarInfoAddService {
      */
     @Override
     public List<shopcarinfoentity> selectByShopId(String shopcarinfoid) {
+        if(null==shopcarinfoid||shopcarinfoid.equals("")){
         List<shopcarinfoentity> str = tableShopCarInfoMapper.Selectall();
         LOGGER.info("!" + str.toString() + "数量！！！！");
-        if (str.isEmpty()) {
+         if (str.isEmpty()) {
             return null;
         } else {
 
@@ -65,6 +64,13 @@ public class ShopCarInfoAddServiceImpl implements ShopCarInfoAddService {
                 System.out.println("数量WWWWWW" + str.get(i).getShopcarinfoname());
             }
             return str;
+        }
+        }else{
+
+            Integer i2 = Integer.parseInt(shopcarinfoid);
+            List<shopcarinfoentity> str = tableShopCarInfoMapper.Selectabyid(i2);
+            return str;
+
         }
 
     }
