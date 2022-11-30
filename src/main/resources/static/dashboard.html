@@ -48,7 +48,7 @@
 		<button   style="background-color: #00F7DE"class="navbar-nav px-3 w-25" class="btn btn-primary" data-loading-text="Loading..."onclick="searchinfo()">搜索</button>
 			<ul class="navbar-nav px-3">
 				<li class="nav-item text-nowrap">
-					<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Sign out</a>
+					<a class="nav-link"  onclick="logout()">Sign out</a>
 				</li>
 			</ul>
 		</nav>
@@ -214,7 +214,8 @@
 		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" ></script>
 		<script type="text/javascript" src="asserts/js/popper.min.js" ></script>
 		<script type="text/javascript" src="asserts/js/bootstrap.min.js" ></script>
-
+		<script src="vue.js"></script>
+		<script src="one.js"></script>
 		<!-- Icons -->
 		<script type="text/javascript" src="asserts/js/feather.min.js" ></script>
 		<script>
@@ -306,6 +307,28 @@
             })
 
 		}
+
+		//登出操作
+
+			function  logout() {
+                console.log("执行退出操作")
+                $.ajax({
+                    url: "/loginout",
+                    type: "GET",
+                    datatype: "json",
+                    data: {
+
+                    },
+                    success: function (res) {
+                        window.location.href='index.html'
+                    }
+
+                }).done.fail(function () {
+                    alert('请查看数据失败')
+
+                })
+
+            }
 		</script>
 
 	</body>
