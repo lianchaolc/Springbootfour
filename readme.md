@@ -45,3 +45,4 @@ D:\Cenlent_Code\vue
 简书sprinboot 实现国际化
 
 2022.12.14 国际化没做出来  不知道哪里出现问题
+vue 页面不知道咋用
