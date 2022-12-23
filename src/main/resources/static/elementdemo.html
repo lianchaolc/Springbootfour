@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.3/theme-chalk/index.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css"></link>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"></link>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>-->
+    <!-- 引入element 的组件库-->
+    <!-- 引入组件库 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"></link>
+
+    <link rel="stylesheet" href="css/index.css"></link>
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <!-- 引入element 的组件库-->
+    <script src="js/vue.js"></script>
+    <script src="js/element.js"></script>
+
+    <!--********************************************************-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <!-- 引入样式 -->
+    <!-- 引入组件库 -->
+    <script src="elementui/index.css"></script>
+    <script src="elementui/index.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <el-row>
+
+        <el-button type="danger">按钮2</el-button>
+        <el-button type="primary">primary</el-button>
+        <el-button type="success">success</el-button>
+        <el-button type="info">info</el-button>
+        <el-button type="warning">warning</el-button>
+        <el-button type="danger">danger</el-button>
+        <el-button type="text">text</el-button>
+    </el-row>
+    <el-button type="primary" size="small">按钮1</el-button>
+
+</div>
+<script>
+
+    new Vue({
+        // 控制的标签容器
+        el: '#app',
+        // 交互的数据
+        data: function () {
+            return {visible: false}
+        },
+        // 方法
+        methods: {
+            open() {
+                this.$alert('这是一段内容', '标题名称', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `action: ${action}`
+                        });
+                    }
+                });
+            }
+        }
+    })
+</script>
+</body>
+</html>
