@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,22 +17,23 @@
 <body class="text-center">
 <!--dashboard.html-->
 <form class="form-signin" action="" th:action="@{/pploginbyhtml}" method="put">
-    <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <p style="color: red" th:text="${msg}"></p>
     <img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label class="sr-only">Username</label>
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+    <label class="sr-only"  th:text="#{login.username} ">Username</label>
     <input type="text" class="form-control" id="Username" placeholder="Username" required="" autofocus="">
-    <label class="sr-only">Password</label>
+    <label class="sr-only"  th:placeholder="#{login.password}">Password</label>
     <input type="password" class="form-control"id="Password" placeholder="Password" required="">
     <div class="checkbox mb-3">
+        <label th:text="#{login.tip}"></label>
         <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me" th:value="#{login.remember}"> 记住我
         </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="button"  id="btnAdd" onclick="submit()">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button"  id="btnAdd" onclick="submit()", th:text="#{login.btn}"></button>
     <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-    <a class="btn btn-sm">中文</a>
-    <a class="btn btn-sm">English</a>
+    <a class="btn btn-sm" th:href="@{/(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/(l='zh_US')}">English</a>
 </form>
 <script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
 <!--相对路径-->

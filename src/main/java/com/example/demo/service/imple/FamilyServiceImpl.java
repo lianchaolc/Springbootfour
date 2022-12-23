@@ -90,10 +90,15 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public List<ppshopfamilybean> Getfamilybean(ppshopfamilybean ppshopfamilybean) {
         System.out.println("：：：：：：" + ppshopfamilybean.getName()+"::::"+ppshopfamilybean.getCardid());
+         String  cardid=ppshopfamilybean.getCardid();
+         String  name=ppshopfamilybean.getName();
         List<ppshopfamilybean> ppshopfamilylist =
-                familyMapper.Getfamilybean
-                (ppshopfamilybean.getCardid(),ppshopfamilybean.getName());
+                familyMapper.Getfamilybean1
+                (cardid,name);
+        System.out.println("返回长度：：：：：：" +    familyMapper.Getfamilybean1
+                (cardid,name));
         if (null != ppshopfamilylist) {
+            System.out.println("返回长度：：：：：：" + ppshopfamilylist.size());
             for (int j=0; j<ppshopfamilylist.size(); j++){
                 System.out.println("返回长度：：：：：：" + ppshopfamilylist.get(j));
                 System.out.println("返回长度：：：：：：" + ppshopfamilylist.get(j).getEndDATE());
@@ -103,7 +108,7 @@ public class FamilyServiceImpl implements FamilyService {
 
             return ppshopfamilylist;
         }
-        return null;
+        return ppshopfamilylist;
     }
 
     /***

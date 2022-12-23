@@ -22,3 +22,8 @@ spring:
     mybatis:
       configuration:
         map-underscore-to-camel-case: true
+
+#引入vue
+  spring:
+   thymeleaf:
+   prefix: classpath:/static/

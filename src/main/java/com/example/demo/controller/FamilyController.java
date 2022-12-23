@@ -82,7 +82,7 @@ public class FamilyController {
                 ppsfbeanlist = familyService.Getfamilybean(ppshopfamily);
                 General.setMsg("Success");
                 General.setCode(00);
-                General.setData(ppshopfamily);
+                General.setData(ppsfbeanlist);
                 for (int i = 0; i < ppsfbeanlist.size(); i++) {
                     System.out.println(ppsfbeanlist.get(i) + "--------");
                 }

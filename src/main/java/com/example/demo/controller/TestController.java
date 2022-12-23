@@ -10,10 +10,6 @@ public class TestController {
     @GetMapping({"/", ""})
     @ResponseBody
     @ApiImplicitParams({
-//            @ApiImplicitParam(name = "usertype", value = "用户类型", required = true, paramType = "query", dataType = "String"),
-//            @ApiImplicitParam(name = "usertest", value = "手机测试", required = true, paramType = "query", dataType = "String"),
-//            @ApiImplicitParam(name = "usertel", value = "手机号码", required = true, paramType = "query", dataType = "String"),
-//            @ApiImplicitParam(name = "username", value = "用户名称", required = true, paramType = "query", dataType = "String"),
     })
     @ApiResponses({
             @ApiResponse(code = 400, message = "请求参数没填好"),

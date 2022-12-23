@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -137,6 +138,27 @@ public class PpUserLoginController {
         }
     }
 
+    /***
+     * 页面登陆请求
+     * @param username
+     * @param password
+     * @param model
+     * @return
+     * 这块没用到但   是狂神说java 的内容
+     */
+        @RequestMapping("/user/login")
+        public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+            //如果用户名和密码正确
+                if ("admin".equals(username) && "123456".equals(password))
+                    return "redirect:/main.html";//重定向到main.html页面,也就是跳转到dashboard页面
+                    //如果用户名或者密码不正确
+                else {
+                    model.addAttribute("msg", "用户名或者密码错误");//显示错误信息
+                    return "index";//跳转到首页
+                }
+            }
+//            原文链接：https://blog.csdn.net/qq_45173404/article/details/108934414
+//        原文链接：https://blog.csdn.net/qq_45173404/article/details/108934414
 
     @RequestMapping("/redirectLogin")
     public String redirectLogin() {

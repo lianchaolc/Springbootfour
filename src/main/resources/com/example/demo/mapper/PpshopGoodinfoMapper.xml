@@ -22,11 +22,9 @@
         SELECT *
         FROM ppshopgoodinfo, ppshopgoodinfonobase
         WHERE ppshopgoodinfo.userPhone = ppshopgoodinfonobase.PuserPhone AND
-              ppshopgoodinfonobase.PuserPhone = #{PuserPhone}  </select>
+              ppshopgoodinfonobase.PuserPhone = #{ PuserPhone }  </select>
     <select id="selegoodinfobaseall" parameterType="java.lang.String"
             resultType="com.example.demo.bean.goodinfolinebean.PPShopGoodInfoResutl">
-
-
         SELECT *
         FROM ppshopgoodinfo, ppshopgoodinfonobase
         GROUP BY userPhone </select>

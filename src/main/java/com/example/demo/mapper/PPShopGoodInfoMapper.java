@@ -13,7 +13,7 @@ public interface PPShopGoodInfoMapper {
      public    List<PPShopGoodInfo>  selegoodinfowh(String Userphone);//  查询所有
 
 //     public  List<PPShopGoodInfoBase> selegoodinfobase(String Userphone);
-
+// 带条件查询
      public  List<PPShopGoodInfoResutl>  selegoodinfobase(String Userphone);
      public  List<PPShopGoodInfoResutl>  selegoodinfobaseall();
 }
