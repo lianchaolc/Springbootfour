@@ -46,11 +46,9 @@ public class PpshopgoodInfoController {
         com.example.demo.domain.GeneralResult GeneralResult = new com.example.demo.domain.GeneralResult();
         servicegoodinfo.select(userphone);
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!===userphone"+userphone);
-//        testGoodService.select(userphone);
         List<PPShopGoodInfoResutl> select = servicegoodinfo.select(userphone);
 
         if(select!=null)    {
-
             GeneralResult.setCode(00);
             GeneralResult.setMsg("成功");
             GeneralResult.setData(select);
@@ -65,5 +63,41 @@ public class PpshopgoodInfoController {
 
     }
 
+
+    /****
+     * 删除索引
+     */
+
+
+    @ApiOperation(value = "通过电话号码删除数据")
+    @RequestMapping(value = "/Deletebyuserphone", method = {RequestMethod.GET, RequestMethod.PUT})
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userphone", value = "电话", required = true, paramType = "query", dataType = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+
+    public GeneralResult Deletebyuserphone(String userphone) {
+        com.example.demo.domain.GeneralResult GeneralResult = new com.example.demo.domain.GeneralResult();
+        servicegoodinfo.select(userphone);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!===userphone"+userphone);
+        List<PPShopGoodInfoResutl> select = servicegoodinfo.deletebyno(userphone);
+
+        if(select!=null)    {
+            GeneralResult.setCode(00);
+            GeneralResult.setMsg("成功");
+            GeneralResult.setData(select);
+            return GeneralResult;
+        }else{
+            GeneralResult.setCode(99);
+            GeneralResult.setMsg("失败");
+            GeneralResult.setData(null);
+            System.out.println("获取数据是空");
+            return GeneralResult;
+        }
+
+    }
 
 }

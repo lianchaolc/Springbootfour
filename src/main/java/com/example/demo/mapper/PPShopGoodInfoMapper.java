@@ -16,4 +16,9 @@ public interface PPShopGoodInfoMapper {
 // 带条件查询
      public  List<PPShopGoodInfoResutl>  selegoodinfobase(String Userphone);
      public  List<PPShopGoodInfoResutl>  selegoodinfobaseall();
+
+
+//      删除语句
+//     用boolean 接受后在查询
+     boolean deletebyno(String Userphone);
 }

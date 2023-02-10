@@ -3,19 +3,6 @@
 <mapper namespace="com.example.demo.mapper.PPShopGoodInfoMapper">
 
 
-    <!--<select id="selegoodinfowh" parameterType="java.lang.String"-->
-    <!--resultType="com.example.demo.bean.PPShopGoodInfo">-->
-    <!--SELECT *-->
-    <!--FROM ppshopgoodinfo-->
-    <!--WHERE userPhone = "6631"-->
-    <!--</select>-->
-
-    <!--<select id="selegoodinfobase" parameterType="java.lang.String"-->
-    <!--resultType="com.example.demo.bean.PPShopGoodInfoBase">-->
-    <!--SELECT *-->
-    <!--FROM ppshopgoodinfonobase-->
-    <!--WHERE PuserPhone = "6631" ORDER BY  PPShopGoodInfonoData DESC-->
-    <!--</select>-->
     <select id="selegoodinfobase" parameterType="java.lang.String"
             resultType="com.example.demo.bean.goodinfolinebean.PPShopGoodInfoResutl">
 
@@ -28,6 +15,13 @@
         SELECT *
         FROM ppshopgoodinfo, ppshopgoodinfonobase
         GROUP BY userPhone </select>
+
+
+    <delete id="deletebyno" parameterType="java.lang.String">
+
+        DELETE   FROM  ppshopgoodinfonobase  WHERE  ppshopgoodinfonobase.PuserPhone = #{ PuserPhone }
+
+    </delete>
 
 </mapper>
         <!--on DUPLICATE key update userid=userid+values(userid) -->

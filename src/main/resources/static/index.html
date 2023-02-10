@@ -17,9 +17,11 @@
 <body class="text-center">
 <!--dashboard.html-->
 <form class="form-signin" action="" th:action="@{/pploginbyhtml}" method="put">
+    <span th:text="|欢迎您，${login.tip}|">九月</span>
     <p style="color: red" th:text="${msg}"></p>
     <img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">请登录</h1>
     <label class="sr-only"  th:text="#{login.username} ">Username</label>
     <input type="text" class="form-control" id="Username" placeholder="Username" required="" autofocus="">
     <label class="sr-only"  th:placeholder="#{login.password}">Password</label>
@@ -30,7 +32,7 @@
             <input type="checkbox" value="remember-me" th:value="#{login.remember}"> 记住我
         </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="button"  id="btnAdd" onclick="submit()", th:text="#{login.btn}"></button>
+    <button class="btn btn-lg btn-primary btn-block" type="button"  id="btnAdd" onclick="submit()", th:text="#{login.btn}">登陆</button>
     <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
     <a class="btn btn-sm" th:href="@{/(l='zh_CN')}">中文</a>
     <a class="btn btn-sm" th:href="@{/(l='zh_US')}">English</a>

@@ -35,14 +35,7 @@ public class PPShopGoodInfoimpl implements PPShopGoodInfoService {
      */
     @Override
     public List<PPShopGoodInfoResutl> select(String userphone) {
-        List<PPShopGoodInfo> infolist = new ArrayList<PPShopGoodInfo>();
-        List<PPShopGoodInfoBase> infolistbase = new ArrayList<PPShopGoodInfoBase>();
         List<PPShopGoodInfoResutl> PPShopGoodInfoResutllist = new ArrayList<PPShopGoodInfoResutl>();
-//        infolist = ppShopGoodInfoMapper.selegoodinfowh(userphone);
-
-//        System.out.print("数据打印:" + infolist.size());
-
-//        infolistbase=    ppShopGoodInfoMapper.selegoodinfobase(userphone)
 
 //        不传d递参数查询所有
         if (null == userphone || userphone.equals("")) {
@@ -56,4 +49,37 @@ public class PPShopGoodInfoimpl implements PPShopGoodInfoService {
         }
         return PPShopGoodInfoResutllist;
     }
+    /***
+     * 页面上需要的删除 通过id
+     */
+    @Override
+    public List<PPShopGoodInfoResutl> deletebyno(String PuserPhone) {
+        List<PPShopGoodInfoResutl> PPShopGoodInfoResutllist = new ArrayList<PPShopGoodInfoResutl>();
+        System.out.print("传过来为：=" + PuserPhone);
+        if (null == PuserPhone || PuserPhone.equals("")) {
+            System.out.print("传过来为空：=" + PuserPhone);
+        } else {
+            boolean   result= ppShopGoodInfoMapper.deletebyno(PuserPhone);
+            if (result){
+                System.out.print("传过来为：=" +"删除成功" +result);
+                PPShopGoodInfoResutllist = ppShopGoodInfoMapper.selegoodinfobaseall();
+                return  PPShopGoodInfoResutllist;
+            }else{
+                System.out.print("传过来为：=" +"删除失败" );
+                System.out.print("数据打印长度::::" + PPShopGoodInfoResutllist.size());
+                return null;
+            }
+
+        }
+
+        return PPShopGoodInfoResutllist;
+    }
+
+
+
+
+
+
+
+
 }

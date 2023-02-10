@@ -236,6 +236,7 @@ word-break:break-all">
                         <th width="5%">电话</th>
                         <th width="30%">数据</th>
                         <th width="10%">操作人</th>
+                        <th width="4%">编辑</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -298,7 +299,8 @@ word-break:break-all">
                         + '</td><td align="center">' + res.data[i].ppshopGoodUser
                         + '</td><td align="center">'+ res.data[i].ppshopGoodImage
                         + '</td><td align="center">' + res.data[i].puserPhone
-                        + '</td></tr>';
+                        + '</td><td ><a href="#" class="btn btn-primary" data-id=\'${item.id}\'>删除</a> <a href="#"class="btn btn-primary" data-id=\'${item.id}\' >编辑</a></td>\n' +
+                        '                                 </tr>';
                     tb2.append(html);
 
             }
@@ -343,7 +345,71 @@ word-break:break-all">
                                 <td>${item.ppshopGoodInfonoLocalcity}</td>
                                 <td>${item.ppshopGoodUser}</td>
                                 <td>${item.ppshopGoodImage}</td>
-                                <td ><a href="#" class='del' data-id='${item.id}'>删除</a></td>
+
+                                 <td ><a href="#" class="btn btn-primary" data-id='${item.id}'  class="sel_btn ch_cls">删除1111</a></td>
+                               </tr>`
+                    });
+                    //重新渲染到页面
+                    $('#tb2').html(Tag)
+                }
+            }).done(function () {
+
+            }).fail(function () {
+                debugger
+                console.log("I am from fail function.");
+                tb2.append(html);
+            }).always(function () {
+                console.log("I am from always function.");
+                alert("没有查询到相应的结果")
+            }).done.fail(function () {
+                console.log("I am from always function.");
+            })
+        }
+
+    }
+
+
+    /***
+     * 进行删除炒作
+     * @param numberno
+     * @constructor
+     */
+
+    function Deletebt(numberno) {
+        debugger
+        alert('请查输入查询的内容'+numberno)
+        console.log("输入删除索引"+numberno);
+        if(document.getElementById("inputview").toString()==null){
+            alert('请查输入查询的内容'+numberno)
+            return;
+        }else {
+            $.ajax({
+                url: "/Deletebyuserphone",
+                type: "PUT",
+                datatype: "json",
+                data: {
+                    "userphone": document.getElementById("inputview").toString(),
+                },
+
+                success: function (res) {
+                    // debugger
+                    var str_pretty1 = JSON.stringify(res)
+                    const titledata = JSON.parse(str_pretty1).data;
+                    console.log("！！！！！打印数据Q!!!" + titledata)
+                    // 给table 表格复制
+
+                    //循环遍历数据   动态拼接数据到HTML标签中
+                    res.data.forEach(item => {
+                        console.log("！！！！！打印出结果" + item.puserPhone)
+                        //给标签添加自定义属性
+                        Tag +=
+                            `<tr>
+                                <td>${item.puserPhone}</td>
+                                <td>${item.ppshopGoodInfonoLocalcity}</td>
+                                <td>${item.ppshopGoodUser}</td>
+                                <td>${item.ppshopGoodImage}</td>
+                                 <td  onclick="Deletebt("+item.puserPhone+" )">"><a href="#" class="btn btn-primary" data-id='${item.id}'  class="sel_btn ch_cls" onclick="Deletebt()">删除</a></td>
+                                 <td ><a href="#"class="btn btn-primary" data-id='${item.id}'  class="sel_btn ch_cls">编辑</a></td>
                                </tr>`
                     });
                     //重新渲染到页面

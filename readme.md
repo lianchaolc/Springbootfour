@@ -66,3 +66,97 @@ https://blog.csdn.net/yunxing323/article/details/108655250
 
 ***V3 设置国际化***
 https://github.com/finddreams/AndroidMultiLanguage/tree/master/app_start/src/main
+
+
+
+RSA——非对称加密，会产生公钥和私钥，公钥在客户端，私钥在服务端。公钥用于加密，私钥用于解密。
+
+得到当前类的名称
+mainactivyt.class.getSimplename()
+2023.2.7
+作者：纯洁的微笑
+出处：http://www.ityouknow.com/
+public interface UserMapper {
+
+    @Select("SELECT * FROM users")
+    @Results({
+        @Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
+        @Result(property = "nickName", column = "nick_name")
+    })
+    List<UserEntity> getAll();
+
+    @Select("SELECT * FROM users WHERE id = #{id}")
+    @Results({
+        @Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
+        @Result(property = "nickName", column = "nick_name")
+    })
+    UserEntity getOne(Long id);
+
+    @Insert("INSERT INTO users(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
+    void insert(UserEntity user);
+
+    @Update("UPDATE users SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
+    void update(UserEntity user);
+
+    @Delete("DELETE FROM users WHERE id =#{id}")
+    void delete(Long id);
+
+}
+————————————————
+版权声明：本文为CSDN博主「微笑很纯洁」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/ityouknow/article/details/53063404
+
+// This example creates a prepared statement, something like select * from teacher where name = ?;
+@Select("Select * from teacher where name = #{name}")
+Teacher selectTeachForGivenName(@Param("name") String name);
+
+// This example creates n inlined statement, something like select * from teacher where name = 'someName';
+@Select("Select * from teacher where name = '${name}'")
+Teacher selectTeachForGivenName(@Param("name") String name);
+————————————————
+版权声明：本文为CSDN博主「微笑很纯洁」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/ityouknow/article/details/53063404
+
+
+foreach 的使用
+
+https://blog.csdn.net/weixin_38192427/article/details/121443045
+
+
+**2023.2.7  v2**
+项目地址
+https://gitee.com/aun/Timo/blob/master/admin/src/main/java/com/linln/admin/system/controller/LoginController.java
+
+
+
+
+
+android 的判断sdk 版本  显示
+SYSTEM_UI_FLAG_LOW_PROFILE
+- SYSTEM_UI_FLAG_HIDE_NAVIGATION
+- SYSTEM_UI_FLAG_FULLSCREEN
+- SYSTEM_UI_FLAG_LAYOUT_STABLE
+- SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+- SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+- SYSTEM_UI_FLAG_IMMERSIVE
+- SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+————————————————
+版权声明：本文为CSDN博主「QQxiaoqiang1573」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/QQxiaoqiang1573/article/details/79867127
+
+
+****问题***
+国际化不生效
+传统拼接需要用''来进行普通字符串和表达式的拼接，Thymeleaf中进行了简化，只需将拼接的内容块使用||包裹即可：
+<span th:text="|欢迎您，${user.name}|">九月</span>
+
+①因为html里会将<和>符号进行解析，所以不能直接使用，但是如果在{}内使用，是不需要转换的
+
+>	      gt    即greater than，大于
+<         lt    即less than，小于
+>=        ge    即greater equal，大于等于
+<=        le    即less equal，小于等于
+
+
+
+gittoger  提交代码
